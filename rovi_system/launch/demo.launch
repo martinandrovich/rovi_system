@@ -1,0 +1,3 @@
+<launch>
+	<node name="demo" pkg="rovi_system" type="demo" output="screen"/>
+</launch>

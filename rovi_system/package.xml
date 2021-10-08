@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+
+	<name>rovi_system</name>
+	<version>1.0.0</version>
+	<description>Robotics and computer vision system for pick and place tasks with ROS.</description>
+
+	<author email="martinandrovich@gmail.com">Martin Androvich</author>
+	<author email="dscho15@student.sdu.dk">Daniel Tofte Schøn</author>
+
+	<maintainer email="martinandrovich@gmail.com">Martin Androvich</maintainer>
+
+	<license>BSD</license>
+
+	<url type="repository">https://github.com/martinandrovich/rovi_system</url>
+
+	<buildtool_depend>catkin</buildtool_depend>
+	<depend>roscpp</depend>
+	<depend>roslib</depend>
+
+</package>
