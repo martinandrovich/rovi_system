@@ -4,7 +4,7 @@
 
 WS_NAME="rovi_ws"
 WS_PATH="$PWD/$WS_NAME"
-PKG_NAME="rovi_sytem"
+PKG_NAME="rovi_system"
 PROJ_NAME="ROVI"
 GIT_URI="git@github.com:martinandrovich/rovi_system.git" # preferably SSH
 DEMO_CMD="roslaunch rovi_system demo.launch"
