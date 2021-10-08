@@ -1,0 +1,7 @@
+repositories:
+  src/hric_utils:
+    type: git
+    url: git@github.com:HRIC-FC/hric_utils.git
+  src/rovi_system:
+    type: git
+    url: git@github.com:martinandrovich/rovi_system.git
