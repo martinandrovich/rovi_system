@@ -13,6 +13,7 @@ DEMO_CMD="roslaunch rovi_system demo.launch"
 if ! hash rosdep vcs &> /dev/null
 then
 	echo "Unmet dependecies. Please make sure that rosdep and vsctool are installed."
+	return
 	exit
 fi
 
@@ -22,7 +23,7 @@ fi
 # confirm installation
 read -p "This script will create the catkin workspace at '$WS_PATH' and install $PROJ_NAME. Continue? [Y/n] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Nn]$ ]]; then exit; fi
+if [[ $REPLY =~ ^[Nn]$ ]]; then return;exit; fi
 
 # setup workspace
 echo -e  "\n\e[104mCreating catkin workspace...\e[49m\n" && sleep 1
