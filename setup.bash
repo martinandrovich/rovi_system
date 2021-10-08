@@ -34,8 +34,10 @@ catkin init
 # clone project package
 echo -e  "\n\e[104mCloning project package...\e[49m\n" && sleep 1
 git clone $GIT_URI $WS_PATH/src/$PKG_NAME
-REPOS_FILE_PATH=$WS_PATH/src/$PKG_NAME/$PKG_NAME.repos
+# REPOS_FILE_PATH=$WS_PATH/src/$PKG_NAME/$PKG_NAME.repos
 # REPOS_FILE_PATH="$GIT_URI/$PKG_NAME.repos"
+# REPOS_FILE_PATH="$GIT_URI/.repos"
+REPOS_FILE_PATH=$WS_PATH/src/$PKG_NAME/.repos
 
 # clone packages (vcstool)
 echo -e  "\n\e[104mCloning packages...\e[49m\n" && sleep 1

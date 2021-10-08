@@ -1,0 +1,10 @@
+repositories:
+  src/rovi_system:
+    type: git
+    url: git@github.com:martinandrovich/rovi_system.git
+  src/ur5_ros:
+    type: git
+    url: git@github.com:martinandrovich/ur5_ros.git
+  src/ros_utils:
+    type: git
+    url: git@github.com:martinandrovich/ros_utils.git
