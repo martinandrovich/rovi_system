@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.4)
 project(rovi_system)
 
 # C++17
@@ -71,6 +71,7 @@ install(
 
 ## install header files
 install(
-	DIRECTORY include/${PROJECT_NAME}/
+	DIRECTORY
+		include/rovi_system/
 	DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
