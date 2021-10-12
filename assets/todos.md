@@ -19,3 +19,4 @@
 - [ ] args names: const T& frame OR const T& pose OR const T& w_T_x (e.g. in inv_kin())
 - [ ] Matrix4d or Eigen::Isometry3d for pose (T) matrix? or geometry_msg? -> CONSISTENCY
 - [ ] replace .editorconfig with .clangformat (or better)
+- [ ] pipeline for pose estimation in python (get images? rovi_gazebo service node? python module? return pose to C++)
