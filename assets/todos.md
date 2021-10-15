@@ -18,7 +18,7 @@
 - [ ] launch files: description -> gazebo -> controller?
 - [ ] controller interface -> ur5_controllers::wsg:: or ur5_gripper::
 - [ ] combine ur5_ros code
-
+---
 - [ ] ur5_description -> "ur5::ur5_link0" to "ur5::link0"
 - [ ] pipeline for pose estimation in python (get images? rovi_gazebo service node? python module? return pose to C++)
 - [ ] qp_oases review + host + addition to project (.repos etc.)
