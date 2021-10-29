@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+
+	<name>rovi_models</name>
+	<version>1.0.0</version>
+	<description>Gazebo models and worlds for the the ROVI workcell</description>
+
+	<author email="marta16@student.sdu.dk">Martin Androvich</author>
+	<author email="dscho15@student.sdu.dk">Daniel Tofte Schøn</author>
+	<maintainer email="marta16@student.sdu.dk">Martin Androvich</maintainer>
+	<maintainer email="dscho15@student.sdu.dk">Daniel Tofte Schøn</maintainer>
+
+	<license>BSD</license>
+
+	<buildtool_depend>catkin</buildtool_depend>
+	<depend>gazebo_ros</depend>
+
+	<export>
+		<architecture_independent/>
+		
+		<!-- https://github.com/sloretz/gazebo_model_path_example -->
+		<gazebo_ros gazebo_model_path="${prefix}/models"/>
+		<gazebo_ros gazebo_media_path="${prefix}/worlds"/>
+  </export>
+
+</package>
