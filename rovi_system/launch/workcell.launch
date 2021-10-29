@@ -11,11 +11,11 @@
 	<arg name="objects"     doc="Whether to spawn objects (bottle, mug etc.)." default="true"/>
 	<arg name="obstacles"   doc="Whether to spawn obstacles."                  default="false"/>
 	<arg name="controller"  doc="Controller to use; empty for none."           default="ur5_joint_position_controller"/>
-	<arg name="ee"          doc="End-effector to attach."                      default="wsg50" />
-	<arg name="moveit"      doc="Launch MoveIt! server."                       default="false" />
-	<arg name="rviz"        doc="Launch RVIZ (only if using MoveIt!)."         default="false" />
+	<arg name="ee"          doc="End-effector to attach."                      default="wsg50"/>
+	<arg name="moveit"      doc="Launch MoveIt! server."                       default="false"/>
+	<arg name="rviz"        doc="Launch RVIZ (only if using MoveIt!)."         default="false"/>
 
-	<arg name="world"       doc="The Gazebo world to use."                     default="workcell.world" />
+	<arg name="world"       doc="The Gazebo world to use."                     default="workcell.world"/>
 	<arg name="gui"         doc="Use GUI during simulation."                   default="true"/>
 	<arg name="headless"    doc="Simulate w/o OpenGL/GLX capabilities."        default="false"/>
 	
