@@ -5,9 +5,9 @@
 WS_NAME="rovi_ws"
 WS_PATH="$PWD/$WS_NAME"
 PKG_NAME="rovi_system"
-PROJ_NAME="ROVI"
+PROJ_NAME="ROVI System"
 GIT_URI="git@github.com:martinandrovich/rovi_system.git" # preferably SSH
-DEMO_CMD="roslaunch rovi_system demo.launch"
+DEMO_CMD="roslaunch rovi_system workcell.launch"
 
 # check dependencies
 if ! hash rosdep vcs &> /dev/null
