@@ -1,5 +1,5 @@
-# rovi_system
-Robotics and computer vision system for pick and place tasks with ROS.
+# ROVI System
+Robotics and computer vision system for pick and place tasks with ROS/Gazebo/MoveIt.
 
 The project consists of the following packages:
 
