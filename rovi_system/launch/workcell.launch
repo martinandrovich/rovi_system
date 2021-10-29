@@ -1,0 +1,61 @@
+<launch>
+
+	<!-- ARGUMENTS -->
+	<!-- see README.md for info -->
+	
+	<arg name="pose_robot"  doc="Position of robot's base."                    default="-x 0.1 -y 0.5"/>
+	<arg name="pose_camera" doc="Pose of camera."                              default="-x 0.44 -y 1.4 -z 1.5 -R 0.0 -P 1.2 -Y -1.5707"/>
+	<arg name="pose_kinect" doc="Pose of kinect sensor."                       default="-x 0.4 -y 1.96 -z 1.28 -R 0.014188 -P 0.690494 -Y -1.570168"/>
+	<arg name="pose_proj"   doc="Pose of projector."                           default="-x 0.4 -y 1.0 -z 1.5 -R 0.0 -P 1.5707 -Y 0"/>
+
+	<arg name="objects"     doc="Whether to spawn objects (bottle, mug etc.)." default="true"/>
+	<arg name="obstacles"   doc="Whether to spawn obstacles."                  default="false"/>
+	<arg name="controller"  doc="Controller to use; empty for none."           default="ur5_joint_position_controller"/>
+	<arg name="ee"          doc="End-effector to attach."                      default="wsg50" />
+	<arg name="moveit"      doc="Launch MoveIt! server."                       default="false" />
+	<arg name="rviz"        doc="Launch RVIZ (only if using MoveIt!)."         default="false" />
+
+	<arg name="world"       doc="The Gazebo world to use."                     default="workcell.world" />
+	<arg name="gui"         doc="Use GUI during simulation."                   default="true"/>
+	<arg name="headless"    doc="Simulate w/o OpenGL/GLX capabilities."        default="false"/>
+	
+	<!-- GAZEBO -->
+
+	<!-- launch gazebo (must be paused) -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(arg world)"/>
+		<arg name="paused" value="true"/>
+		<arg name="gui" value="$(arg gui)"/>
+		<arg name="headless" value="$(arg headless)"/>
+	</include>
+	
+	<!-- sensors -->
+	<node name="spawn_stereo_camera" pkg="gazebo_ros" type="spawn_model" args="-database camera_stereo -sdf -model camera_stereo $(arg pose_camera)"/>
+	<node name="spawn_kinect" pkg="gazebo_ros" type="spawn_model" args="-database kinect -sdf -model openni_kinect $(arg pose_kinect)"/>
+	<node name="spawn_projector" pkg="gazebo_ros" type="spawn_model" args="-database projector -sdf -model projector $(arg pose_proj)"/>
+	
+	<!-- objects -->
+	<node name="spawn_table" pkg="gazebo_ros" type="spawn_model" args="-database table -sdf -model table -x 0.4 -y 0.6 -z 0.64"/>
+		
+	<group if="$(arg objects)">
+		<node name="spawn_bottle" pkg="gazebo_ros" type="spawn_model" args="-database bottle -sdf -model bottle       -x 0.5 -y 1.05 -z 0.75"/>
+		<node name="spawn_mug" pkg="gazebo_ros" type="spawn_model" args="-database mug -sdf -model mug                -x 0.1 -y 1.05 -z 0.75"/>
+		<node name="spawn_milk" pkg="gazebo_ros" type="spawn_model" args="-database milk -sdf -model milk             -x 0.3 -y 1.05 -z 0.75"/>
+		<node name="spawn_coffecan" pkg="gazebo_ros" type="spawn_model" args="-database coffecan -sdf -model coffecan -x 0.7 -y 1.05 -z 0.75"/>
+	</group>
+	
+	<group if="$(arg obstacles)">
+		<!-- <node name="spawn_bottle" pkg="gazebo_ros" type="spawn_model" args="-database bottle -sdf -model bottle       -x 0.5 -y 1.05 -z 0.75"/> -->
+	</group>
+	
+	<!-- robot + controller + moveit/rviz-->
+	<include file="$(find ur5_gazebo)/launch/ur5.launch">
+		<arg name="gazebo" value="false"/>
+		<arg name="pos" value="$(arg pose_robot) -z 0.74"/>
+		<arg name="controller" value="$(arg controller)"/>
+		<arg name="ee" value="$(arg ee)"/>
+		<arg name="moveit" value="$(arg moveit)"/>
+		<arg name="rviz" value="$(arg rviz)"/>
+	</include>
+
+</launch>
