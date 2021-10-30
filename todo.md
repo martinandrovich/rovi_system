@@ -17,7 +17,9 @@
 #### `ur5_planner`
 
 - [ ] define interface(s)
-- [ ] moveit.h
+- [ ] `moveit.h`
+	- [ ] use `ur5::LINKS` etc.
+	- [ ] make `update_planning_scene()` dynamic wrt. gripper/EE
 - [ ] `reachability.h`
 
 #### `ur5_controllers`
