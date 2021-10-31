@@ -1,6 +1,6 @@
 ## `ros_utils`
 
-- [ ] `geometry_msgs.h`
+- [x] `geometry_msgs.h`
 - [ ] `gazebo.h`
   - [ ] simulation
   - [ ] models and states
@@ -11,12 +11,13 @@
 
 #### `ur5_ros`
 
-- [ ] refactor all namespaces to `ur5::`
-- [ ] fix header names (~~`ur5_description/ur5.h`~~ → `ur5_description/ur5_description.h`)
+- [x] refactor all namespaces to `ur5::`
+- [x] fix all header names (~~`ur5_description/ur5.h`~~ → `ur5_description/ur5_description.h`)
 
 #### `ur5_description`
 
-- [ ] `has_ee()`
+- [x] `has_ee()`
+- [x] change to `ur5::`
 
 #### `ur5_planner`
 
@@ -26,8 +27,14 @@
 	- [ ] make `update_planning_scene()` dynamic wrt. gripper/EE
 - [ ] `reachability.h`
 
+#### `ur5_dynamics`
+
+- [ ] refactor to namespace (from static class)
+- [ ] change to `ur5::` → update dependents
+
 #### `ur5_controllers`
 
+- [x] change to `ur5::`
 - [ ] cartesian controller (bridge)
 - [ ] change to trajectory_msgs?
 - [ ] `exec_traj()`
@@ -35,8 +42,11 @@
 
 #### `ur5_gazebo`
 
+- [ ] change to `ur5::`
+- [ ] `get_robot_state()` → `get_state()`
 - [ ] `get_gripper_state()` → `get_ee_state()`
-- [ ] remove `w_T_b()`
+- [ ] `get_ee_given_pos()` + `get_tcp_given_pos()`
+- [ ] add more pre-defined transforms e.g `w_T_b()`
 - [ ] examples
 
 #### `wsg50`
@@ -56,8 +66,9 @@
 
 #### `rovi_planner`
 
-- [ ] define interface(s)
+- [x] define interface(s)
 - [ ] `traj_lin()` + `traj_par()` (cartesian)
+- [ ] `export_x()` methods
 - [ ] examples
 - [ ] joint space interpolation (trajectory_msgs?)
 - [ ] templated methods: `traj_lin<TrajT>()` + `traj_par<TrajT>()` (KDL sucks at joint interpolation)
