@@ -51,6 +51,7 @@
 - [ ] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
 - [ ] interface, e.g. `rovi_system::get_camera_imgs()`
 - [ ] interface node for python (add to `.launch` file)
+- [ ] `get_experiment_dir()` + `get_data_dir(experiment_dir)`
 - [ ] experiments / tests + data export
 
 #### `rovi_planner`
