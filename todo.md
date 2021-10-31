@@ -25,6 +25,11 @@
 - [x] `has_ee()`
 - [x] change to `ur5::`
 
+#### `ur5_moveit_config`
+
+- [ ] run setup assistant
+- [ ] add `world_offset` virtual joint
+
 #### `ur5_planner`
 
 - [ ] define interface(s)
@@ -32,6 +37,7 @@
 	- [ ] use `ur5::LINKS` etc.
 	- [ ] make `update_planning_scene()` dynamic wrt. gripper/EE
 - [ ] `reachability.h`
+- [ ] examples
 
 #### `ur5_dynamics`
 
@@ -48,9 +54,9 @@
 
 #### `ur5_gazebo`
 
-- [ ] change to `ur5::`
-- [ ] `get_robot_state()` → `get_state()`
-- [ ] `get_gripper_state()` → `get_ee_state()`
+- [x] change to `ur5::`
+- [x] `get_robot_state()` → `get_state()`
+- [x] `get_gripper_state()` → `get_ee_state()`
 - [ ] `get_ee_given_pos()` + `get_tcp_given_pos()`
 - [ ] add more pre-defined transforms e.g `w_T_b()`
 - [ ] examples
