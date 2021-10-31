@@ -1,3 +1,9 @@
+## general
+
+- [ ] update author/maintainer (email + order)
+- [ ] add `README.md` to each pkg to match description of `package.xml`
+- [ ] check dependencies of each package (`package.xml` + header files)
+
 ## `ros_utils`
 
 - [x] `geometry_msgs.h`
