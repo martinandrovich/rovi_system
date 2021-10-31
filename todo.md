@@ -14,6 +14,10 @@
 - [ ] refactor all namespaces to `ur5::`
 - [ ] fix header names (~~`ur5_description/ur5.h`~~ → `ur5_description/ur5_description.h`)
 
+#### `ur5_description`
+
+- [ ] `has_ee()`
+
 #### `ur5_planner`
 
 - [ ] define interface(s)
@@ -25,6 +29,7 @@
 #### `ur5_controllers`
 
 - [ ] cartesian controller (bridge)
+- [ ] change to trajectory_msgs?
 - [ ] `exec_traj()`
 - [ ] examples
 
@@ -50,10 +55,11 @@
 
 #### `rovi_planner`
 
-- [ ] define interface
-- [ ] `traj_lin<TrajT>()` + `traj_par<TrajT>()`
-- [ ] `export_traj<TrajT>()`
+- [ ] define interface(s)
+- [ ] `traj_lin()` + `traj_par()` (cartesian)
 - [ ] examples
+- [ ] joint space interpolation (trajectory_msgs?)
+- [ ] templated methods: `traj_lin<TrajT>()` + `traj_par<TrajT>()` (KDL sucks at joint interpolation)
 
 #### `rovi_vision`
 
