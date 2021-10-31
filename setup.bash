@@ -59,7 +59,7 @@ echo -e "\n# $PROJ_NAME\nalias $WS_NAME='source $WS_PATH/devel/setup.bash && cd 
 source ~/.bashrc
 
 # delete script
-cd .. && rm setup-project.bash
+cd .. && rm setup.bash
 
 # finish
 echo -e  "\n\e[104mInstallation complete!\e[49m\n"
