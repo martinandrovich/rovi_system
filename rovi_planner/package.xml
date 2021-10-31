@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+
+	<name>rovi_planner</name>
+	<version>1.0.0</version>
+	<description>Dynamics and kinematics of the UR5 robot</description>
+
+	<author email="dscho15@student.sdu.dk">Daniel Tofte Schøn</author>
+	<author email="marta16@student.sdu.dk">Martin Androvich</author>
+	<maintainer email="dscho15@student.sdu.dk">Daniel Tofte Schøn</maintainer>
+	<maintainer email="marta16@student.sdu.dk">Martin Androvich</maintainer>
+
+	<license>BSD</license>
+	
+	<buildtool_depend>catkin</buildtool_depend>
+	<depend>roscpp</depend>
+	<depend>roslib</depend>
+	<depend>ros_utils</depend>
+	<depend>kdl_parser</depend>
+	<depend>kdl_conversions</depend>
+	<depend>eigen_conversions</depend>
+	<depend>geometry_msgs</depend>
+	<depend>sensor_msgs</depend>
+
+</package>

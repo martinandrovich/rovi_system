@@ -1,0 +1,102 @@
+cmake_minimum_required(VERSION 3.4)
+project(rovi_planner)
+
+# C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# find catkin and any catkin packages
+find_package(
+	catkin REQUIRED
+	COMPONENTS
+		roscpp
+		roslib
+		ros_utils
+		kdl_parser
+		kdl_conversions
+		eigen_conversions
+		geometry_msgs
+		sensor_msgs
+)
+
+# Finding Eigen is somewhat complicated because of our need to support Ubuntu
+# all the way back to saucy.  First we look for the Eigen3 cmake module
+# provided by the libeigen3-dev on newer Ubuntu.  If that fails, then we
+# fall-back to the version provided by cmake_modules, which is a stand-in.
+find_package(Eigen3 QUIET)
+if(NOT EIGEN3_FOUND)
+	find_package(cmake_modules REQUIRED)
+	find_package(Eigen REQUIRED)
+	set(EIGEN3_INCLUDE_DIRS ${EIGEN_INCLUDE_DIRS})
+endif()
+
+# Note that eigen 3.2 (on Ubuntu Wily) only provides EIGEN3_INCLUDE_DIR,
+# not EIGEN3_INCLUDE_DIRS, so we have to set the latter from the former.
+if(NOT EIGEN3_INCLUDE_DIRS)
+	set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
+endif()
+
+# declare a catkin package
+catkin_package(
+	INCLUDE_DIRS
+		include
+		${EIGEN3_INCLUDE_DIR}
+	LIBRARIES
+		rovi_planner
+	CATKIN_DEPENDS
+		roscpp
+		roslib
+		ros_utils
+		kdl_parser
+		kdl_conversions
+		eigen_conversions
+		geometry_msgs
+		sensor_msgs
+	DEPENDS
+		EIGEN3
+)
+
+# include directories
+include_directories(
+	include
+	${catkin_INCLUDE_DIRS}
+	${EIGEN3_INCLUDE_DIRS}
+)
+
+################################################################################################
+
+# libraries
+# REMEMBER TO ADD TO INSTALL TARGETS (bottom of file) !!!
+
+## rovi_planner
+add_library(rovi_planner src/lib_rovi_planner.cpp)
+target_link_libraries(rovi_planner ${catkin_LIBRARIES})
+
+################################################################################################
+
+# nodes
+
+add_executable(demo_rovi_planner examples/demo_rovi_planner.cpp)
+target_link_libraries(demo_rovi_planner ${catkin_LIBRARIES} rovi_planner)
+
+# ...
+
+################################################################################################
+
+# install targets
+
+## executables and/or libraries for installation
+install(
+	TARGETS
+		rovi_planner
+	ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+	LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+	RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+
+## install header files
+install(
+	DIRECTORY
+		include/rovi_planner/
+	DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+)
