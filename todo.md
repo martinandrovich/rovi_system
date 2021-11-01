@@ -2,16 +2,19 @@
 
 - [ ] update author/maintainer (email + order)
 - [ ] add `README.md` to each pkg to match description of `package.xml`
-- [ ] check dependencies of each package (`package.xml` + header files)
+- [ ] update dependencies of each package (`package.xml` + header files)
 
 ## `ros_utils`
 
 - [x] `geometry_msgs.h`
 - [ ] `gazebo.h`
-  - [ ] simulation
-  - [ ] models and states
-  - [ ] computer vision
+	- [ ] simulation
+	- [ ] models and states
+	- [ ] ~~computer vision~~
 - [ ] `moveit.h`
+	- [ ] `make_mesh_cobj()`
+	- [ ] `get_gazebo_cobjs()`
+	- [ ] `move_base()` → `move_virtual_joint()`
 
 ## `ur5_ros`
 
@@ -34,10 +37,13 @@
 
 - [ ] define interface(s)
 - [ ] `moveit.h`
-	- [ ] use `ur5::LINKS` etc.
+	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
 	- [ ] make `update_planning_scene()` dynamic wrt. gripper/EE
+	- [ ] `move_base()` using `move_virtual_joint()`
+	- [ ] examples
 - [ ] `reachability.h`
-- [ ] examples
+	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
+	- [ ] examples
 
 #### `ur5_dynamics`
 
@@ -63,7 +69,7 @@
 
 #### `wsg50`
 
-- [ ] `get_state()`
+- [ ] `get_state()`*
 
 ## `rovi_system`
 
@@ -79,15 +85,14 @@
 #### `rovi_planner`
 
 - [x] define interface(s)
-- [ ] `traj_lin()` + `traj_par()` (cartesian)
+- [x] `traj_lin()` (cartesian)
+- [ ] `traj_par()` (cartesian)
 - [ ] `export_x()` methods
-- [ ] examples
-- [ ] joint space interpolation (trajectory_msgs?)
-- [ ] templated methods: `traj_lin<TrajT>()` + `traj_par<TrajT>()` (KDL sucks at joint interpolation)
+- [ ] joint space interpolation* (trajectory_msgs, template methods e.g. `traj_lin<TrajT>()`?)
 
 #### `rovi_vision`
 
-- [ ] define interface e.g. `rovi_vision::m1::get_pose("object")`
+- [ ] define interface(s) e.g. `rovi_vision::m1::get_pose("object")`
 - [ ] switch to using `Eigen::Isometry3d`
 - [ ] examples
 
