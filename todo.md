@@ -15,6 +15,9 @@
 	- [x] `make_mesh_cobj()`
 	- [x] `get_gazebo_cobjs()`
 	- [x] `move_base()` → `set_virtual_jnt_pose()`
+- [ ] `eigen.h`
+	- [ ] `Eigen::make_tf(xyz, rpy)`
+	- [ ] `Eigen::make_tf(Pose)`
 
 ## `ur5_ros`
 
