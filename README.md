@@ -8,7 +8,7 @@ The project consists of the following packages:
 - [`rovi_planner`](/rovi_planner)
 - [`rovi_vision`](/rovi_vision)
 - [`ur5_ros`](/ur5_ros) - Integration of UR5 robot into ROS/Gazebo environment
-- [`ros_utils`](/ros_utils) - Collection of modern utilities for the ROS/Gazebo workflow
+- [`ros_utils`](/ros_utils) - Collection of modern utilities for the ROS/Gazebo/MoveIt workflow
 - [`qp_oases`](/qp_oases)
 
 For more information, please refer to the README of a specific package.
@@ -19,12 +19,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Dependencies
 
-The project is tested on Ubuntu `20.04.3 LTS`. Built using `catkin build` with `CMake 3.4` and `gcc 9.3.0-17`, mainly depending on:
+The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`] with `CMake 3.4` and `gcc 9.3.0-17`, mainly depending on:
 
 * [ROS (noetic)][ros] - framework for robot operation
 * [Gazebo][gazebo] - robot simulation environment
 * [rosdep] - management of ROS system dependecies
 * [vcstool] - automated workspace configuration
+* [catkin_tools] - command line tools for working with catkin workspaces
 
 ### Installation
 
@@ -33,12 +34,14 @@ Installation of the project:
 <details>
 <summary><strong>Installing ROS and dependencies</strong></summary></br>
 
-Install the Desktop-Full Install of ROS as per [their documentation](http://wiki.ros.org/noetic/Installation/Ubuntu) for Ubuntu 20.04 - make sure to install `rosdep`.
-
-Then, install `vcstool` by running ([reference](https://github.com/dirk-thomas/vcstool#how-to-install-vcstool)):
-
+1) Install ROS (Desktop-Full Install) and `rosdep` ([guide](http://wiki.ros.org/noetic/Installation/Ubuntu))
+2) Install `vcstool` ([guide](https://github.com/dirk-thomas/vcstool#how-to-install-vcstool))
 ```
 sudo apt install python3-vcstool
+```
+3) Install `catkin_tools` ([guide](https://catkin-tools.readthedocs.io/en/latest/installing.html#installing-on-ubuntu-with-apt-get))
+```
+sudo apt install python3-catkin-tools
 ```
 
 </details>
@@ -90,6 +93,7 @@ No license has been decided yet.
 [gazebo]: http://gazebosim.org
 [rosdep]: https://wiki.ros.org/rosdep
 [vcstool]: https://github.com/dirk-thomas/vcstool
+[catkin_tools]: https://catkin-tools.readthedocs.io
 
 [pkg-project_foo]: /project_foo
 
