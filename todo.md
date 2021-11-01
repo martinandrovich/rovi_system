@@ -11,10 +11,10 @@
 	- [ ] simulation
 	- [ ] models and states
 	- [ ] ~~computer vision~~
-- [ ] `moveit.h`
-	- [ ] `make_mesh_cobj()`
-	- [ ] `get_gazebo_cobjs()`
-	- [ ] `move_base()` → `move_virtual_joint()`
+- [x] `moveit.h`
+	- [x] `make_mesh_cobj()`
+	- [x] `get_gazebo_cobjs()`
+	- [x] `move_base()` → `set_virtual_jnt_pose()`
 
 ## `ur5_ros`
 
@@ -39,7 +39,11 @@
 - [ ] `moveit.h`
 	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
 	- [ ] make `update_planning_scene()` dynamic wrt. gripper/EE
-	- [ ] `move_base()` using `move_virtual_joint()`
+	- [ ] `move_base()` using `move_virtual_joint()` w/ recursive mutex
+	- [ ] `attach_object_to_ee()`
+	- [ ] `plan()`
+	- [ ] `plan_to_jnt_traj()`
+	- [ ] `start scene publisher()`
 	- [ ] examples
 - [ ] `reachability.h`
 	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
