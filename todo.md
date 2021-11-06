@@ -6,6 +6,7 @@
 
 ## `ros_utils`
 
+- [ ] `ros_utils.h`
 - [x] `geometry_msgs.h`
 - [ ] `gazebo.h`
 	- [ ] simulation
@@ -15,9 +16,10 @@
 	- [x] `make_mesh_cobj()`
 	- [x] `get_gazebo_cobjs()`
 	- [x] `move_base()` → `set_floating_jnt_pose()`
-- [ ] `eigen.h`
-	- [ ] `Eigen::make_tf(xyz, rpy)`
-	- [ ] `Eigen::make_tf(Pose)`
+- [x] `eigen.h`
+	- [x] `Eigen::make_tf(xyz, rpy)`
+	- [x] `Eigen::make_tf(Pose)`
+	- [x] `Eigen::make_tf(xyz, axis, angle)`
 
 ## `ur5_ros`
 
@@ -25,6 +27,7 @@
 
 - [x] refactor all namespaces to `ur5::`
 - [x] fix all header names (~~`ur5_description/ur5.h`~~ → `ur5_description/ur5_description.h`)
+- [ ] include ur5_x everywhere properly
 
 #### `ur5_description`
 
@@ -37,19 +40,19 @@
 - [x] add `world_offset` virtual joint
 - [x] use kinematic chain (instead of joints)
 - [x] add `default.launch`
-- [ ] remove floating joint from planning group*
+- [ ] remove floating joint from planning group (maybe not possible)
 - [ ] documentation (launch file, floating joint, planning etc.)
 
 #### `ur5_planner`
 
 - [ ] define interface(s)
 - [ ] `moveit.h`
-	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
+	- [x] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
 	- [x] make `update_planning_scene()` dynamic wrt. gripper/EE
 	- [x] `start_scene_publisher()`
 	- [x] proper `terminate()`
 	- [ ] `move_base()` using `move_virtual_joint()` w/ recursive mutex
-	- [ ] `attach_object_to_ee()`
+	- [x] `attach_object_to_ee()`
 	- [ ] `plan()`
 	- [ ] `plan_to_jnt_traj()`
 	- [ ] examples
@@ -65,6 +68,7 @@
 #### `ur5_controllers`
 
 - [x] change to `ur5::`
+- [x] `command()` (with `Eigen::Vector6d`)
 - [ ] `exec_traj()`
 - [ ] cartesian controller (bridge)
 - [ ] change to trajectory_msgs?
@@ -75,7 +79,8 @@
 - [x] change to `ur5::`
 - [x] `get_robot_state()` → `get_state()`
 - [x] `get_gripper_state()` → `get_ee_state()`
-- [ ] `get_ee_given_pos()` + `get_tcp_given_pos()`
+- [x] `get_ee_given_obj_pose()`
+- [ ] `get_tcp_given_obj_pose()`
 - [ ] add more pre-defined transforms e.g `w_T_b()`
 - [ ] examples
 
