@@ -8,7 +8,7 @@ The project consists of the following packages:
 - [`rovi_planner`](/rovi_planner)
 - [`rovi_vision`](/rovi_vision)
 - [`ur5_ros`](https://github.com/martinandrovich/ur5_ros) - Integration of UR5 robot into ROS/Gazebo/MoveIt environment
-- [`ros_utils`](/ros_utils) - Collection of modern utilities for the ROS/Gazebo/MoveIt workflow
+- [`ros_utils`](https://github.com/martinandrovich/ros_utils) - Collection of modern utilities for the ROS/Gazebo/MoveIt workflow
 - [`qp_oases`](https://github.com/dscho15/qp_oases)
 
 For more information, please refer to the README of a specific package.
