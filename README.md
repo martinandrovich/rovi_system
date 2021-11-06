@@ -7,9 +7,9 @@ The project consists of the following packages:
 - [`rovi_models`](/rovi_models)
 - [`rovi_planner`](/rovi_planner)
 - [`rovi_vision`](/rovi_vision)
-- [`ur5_ros`](/ur5_ros) - Integration of UR5 robot into ROS/Gazebo environment
+- [`ur5_ros`](https://github.com/martinandrovich/ur5_ros) - Integration of UR5 robot into ROS/Gazebo/MoveIt environment
 - [`ros_utils`](/ros_utils) - Collection of modern utilities for the ROS/Gazebo/MoveIt workflow
-- [`qp_oases`](/qp_oases)
+- [`qp_oases`](https://github.com/dscho15/qp_oases)
 
 For more information, please refer to the README of a specific package.
 
@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Dependencies
 
-The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`] with `CMake 3.4` and `gcc 9.3.0-17`, mainly depending on:
+The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`][catkin_tools] with `CMake 3.4` and `gcc 9.3.0-17`, mainly depending on:
 
 * [ROS (noetic)][ros] - framework for robot operation
 * [Gazebo][gazebo] - robot simulation environment
