@@ -9,12 +9,12 @@
 - [x] `geometry_msgs.h`
 - [ ] `gazebo.h`
 	- [ ] simulation
-	- [ ] models and states
+	- [x] models and states
 	- [ ] ~~computer vision~~
 - [x] `moveit.h`
 	- [x] `make_mesh_cobj()`
 	- [x] `get_gazebo_cobjs()`
-	- [x] `move_base()` → `set_virtual_jnt_pose()`
+	- [x] `move_base()` → `set_floating_jnt_pose()`
 - [ ] `eigen.h`
 	- [ ] `Eigen::make_tf(xyz, rpy)`
 	- [ ] `Eigen::make_tf(Pose)`
@@ -33,20 +33,25 @@
 
 #### `ur5_moveit_config`
 
-- [ ] run setup assistant
-- [ ] add `world_offset` virtual joint
+- [x] run setup assistant
+- [x] add `world_offset` virtual joint
+- [x] use kinematic chain (instead of joints)
+- [x] add `default.launch`
+- [ ] remove floating joint from planning group*
+- [ ] documentation (launch file, floating joint, planning etc.)
 
 #### `ur5_planner`
 
 - [ ] define interface(s)
 - [ ] `moveit.h`
 	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
-	- [ ] make `update_planning_scene()` dynamic wrt. gripper/EE
+	- [x] make `update_planning_scene()` dynamic wrt. gripper/EE
+	- [x] `start_scene_publisher()`
+	- [x] proper `terminate()`
 	- [ ] `move_base()` using `move_virtual_joint()` w/ recursive mutex
 	- [ ] `attach_object_to_ee()`
 	- [ ] `plan()`
 	- [ ] `plan_to_jnt_traj()`
-	- [ ] `start scene publisher()`
 	- [ ] examples
 - [ ] `reachability.h`
 	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
@@ -60,9 +65,9 @@
 #### `ur5_controllers`
 
 - [x] change to `ur5::`
+- [ ] `exec_traj()`
 - [ ] cartesian controller (bridge)
 - [ ] change to trajectory_msgs?
-- [ ] `exec_traj()`
 - [ ] examples
 
 #### `ur5_gazebo`
