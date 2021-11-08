@@ -40,6 +40,7 @@
 - [x] add `world_offset` virtual joint
 - [x] use kinematic chain (instead of joints)
 - [x] add `default.launch`
+- [ ] add `ur5_arm` as parent to `ur5_ee` end-effector group
 - [ ] remove floating joint from planning group (maybe not possible)
 - [ ] documentation (launch file, floating joint, planning etc.)
 
