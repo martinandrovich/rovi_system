@@ -70,9 +70,10 @@
 
 - [x] change to `ur5::`
 - [x] `command()` (with `Eigen::Vector6d`)
-- [ ] `exec_traj()`
+- [ ] `command_setpoint()` (templated)
+- [ ] `command_traj()`
+- [ ] change to `trajectory_msgs` → `JointTrajectoryPoint`
 - [ ] cartesian controller (bridge)
-- [ ] change to trajectory_msgs?
 - [ ] examples
 
 #### `ur5_gazebo`
