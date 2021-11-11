@@ -52,10 +52,11 @@
 	- [x] make `update_planning_scene()` dynamic wrt. gripper/EE
 	- [x] `start_scene_publisher()`
 	- [x] proper `terminate()`
-	- [ ] `move_base()` using `move_virtual_joint()` w/ recursive mutex
+	- [ ] `move_base()` using `set_floating_jnt_pose()` w/ recursive mutex
 	- [x] `attach_object_to_ee()`
-	- [ ] `plan()`
-	- [ ] `plan_to_jnt_traj()`
+	- [x] `plan()`
+	- [x] `plan_to_jnt_traj()`
+	- [ ] change to `JointTrajectoryPoint`
 	- [ ] examples
 - [ ] `reachability.h`
 	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
