@@ -16,6 +16,7 @@
 	- [x] `make_mesh_cobj()`
 	- [x] `get_gazebo_cobjs()`
 	- [x] `move_base()` → `set_floating_jnt_pose()`
+	- [ ] make `get_gazebo_cobjs()` generic with other shapes (e.g. `gazebo_ros_moveit_planning_scene` plugin) 
 - [x] `eigen.h`
 	- [x] `Eigen::make_tf(xyz, rpy)`
 	- [x] `Eigen::make_tf(Pose)`
@@ -47,17 +48,20 @@
 #### `ur5_planner`
 
 - [ ] define interface(s)
-- [ ] `moveit.h`
+- [x] `moveit.h`
 	- [x] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
 	- [x] make `update_planning_scene()` dynamic wrt. gripper/EE
 	- [x] `start_scene_publisher()`
 	- [x] proper `terminate()`
-	- [ ] `move_base()` using `set_floating_jnt_pose()` w/ recursive mutex
+	- [x] `move_base()` using `set_floating_jnt_pose()` w/ recursive mutex
 	- [x] `attach_object_to_ee()`
 	- [x] `plan()`
 	- [x] `plan_to_jnt_traj()`
-	- [ ] change to `JointTrajectoryPoint`
-	- [ ] examples
+	- [x] change to `JointTrajectoryPoint`
+	- [x] add dynamic addition/removal of attached collision objects from Gazebo
+	- [x] `set_planner_config()`
+	- [x] examples
+	- [ ] add more planners
 - [ ] `reachability.h`
 	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
 	- [ ] examples
@@ -71,9 +75,9 @@
 
 - [x] change to `ur5::`
 - [x] `command()` (with `Eigen::Vector6d`)
-- [ ] `command_setpoint()` (templated)
-- [ ] `command_traj()`
-- [ ] change to `trajectory_msgs` → `JointTrajectoryPoint`
+- [x] `command_setpoint()`
+- [x] `command_traj()`
+- [ ] change to `trajectory_msgs` → `JointTrajectoryPoint` → remove `ur5_msgs`
 - [ ] cartesian controller (bridge)
 - [ ] examples
 
