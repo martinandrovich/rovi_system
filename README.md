@@ -78,6 +78,10 @@ roslaunch rovi_system workcell.launch ee:=wsg50 controller:=ur5_joint_position_c
 
 An overview of the arguments is located in the [`workcell.launch`](rovi_system/launch/workcell.launch) file.
 
+### Working in VS Code
+
+Since IntelliSense is utter trash for larger projects, it is recommended to use the [`clangd` extension](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) as the language server, together with [`catkin-tools-clangd`](https://pypi.org/project/catkin-tools-clangd/) python package to generate the `compile_commands.json` for `clangd`. The [`ROS` extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros) is also a nice addition when working in VS Code.
+
 ## License
 
 No license has been decided yet.
