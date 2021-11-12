@@ -60,6 +60,7 @@
 	- [x] change to `JointTrajectoryPoint`
 	- [x] add dynamic addition/removal of attached collision objects from Gazebo
 	- [x] `set_planner_config()`
+	- [x] `get_mutexed_planning_scene()`
 	- [x] examples
 	- [ ] add more planners
 - [ ] `reachability.h`
