@@ -29,7 +29,7 @@
 - [x] refactor all namespaces to `ur5::`
 - [x] fix all header names (~~`ur5_description/ur5.h`~~ → `ur5_description/ur5_description.h`)
 - [ ] include ur5_x everywhere properly
-
+~
 #### `ur5_description`
 
 - [x] `has_ee()`
@@ -47,7 +47,7 @@
 
 #### `ur5_planner`
 
-- [ ] define interface(s)
+- [x] re-define interface(s)
 - [x] `moveit.h`
 	- [x] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
 	- [x] make `update_planning_scene()` dynamic wrt. gripper/EE
@@ -64,8 +64,11 @@
 	- [x] examples
 	- [ ] add more planners
 - [ ] `reachability.h`
-	- [ ] refactor to new ur5:: interface (use `ur5::LINKS` etc.)
-	- [ ] examples
+	- [x] refactor to new ur5:: interface
+	- [x] ReachabilityData
+	- [ ] ~~export_reachability_data()~~
+	- [ ] grasp orientation lambdas (GRASP_SIDE_AT_TCP, GRASP_TOP_AT_TCP)
+	- [x] examples
 
 #### `ur5_dynamics`
 
@@ -88,7 +91,7 @@
 - [x] `get_robot_state()` → `get_state()`
 - [x] `get_gripper_state()` → `get_ee_state()`
 - [x] `get_ee_given_obj_pose()`
-- [ ] `get_tcp_given_obj_pose()`
+- [ ] `get_tcp_given_obj_pose()` or `get_ee_given_obj_pose_at_tcp()` (needed?)
 - [ ] add more pre-defined transforms e.g `w_T_b()`
 - [ ] examples
 
