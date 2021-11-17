@@ -28,7 +28,7 @@
 
 - [x] refactor all namespaces to `ur5::`
 - [x] fix all header names (~~`ur5_description/ur5.h`~~ → `ur5_description/ur5_description.h`)
-- [ ] include ur5_x everywhere properly
+- [ ] include ur5_x everywhere properly (headers, package, cmake)
 ~
 #### `ur5_description`
 
@@ -41,8 +41,8 @@
 - [x] add `world_offset` virtual joint
 - [x] use kinematic chain (instead of joints)
 - [x] add `default.launch`
-- [ ] add `ur5_arm` as parent to `ur5_ee` end-effector group
-- [ ] remove floating joint from planning group (maybe not possible)
+- [x] add `ur5_arm` as parent to `ur5_ee` end-effector group
+- [ ] ~~remove floating joint from planning group (maybe not possible)~~
 - [ ] documentation (launch file, floating joint, planning etc.)
 
 #### `ur5_planner`
@@ -97,7 +97,7 @@
 
 #### `wsg50`
 
-- [ ] `get_state()`*
+- [ ] ~~`get_state()`~~
 
 ## `rovi_system`
 
@@ -105,10 +105,15 @@
 
 - [x] `.launch` file
 - [ ] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
-- [ ] interface, e.g. `rovi_system::get_camera_imgs()`
-- [ ] interface node for python (add to `.launch` file)
+- [ ] structure for experiments (directory, plotting/matlab, data, template)
 - [ ] `get_experiment_dir()` + `get_data_dir(experiment_dir)`
-- [ ] experiments / tests + data export
+- [ ] ~~interface, e.g. `rovi_system::get_camera_imgs()` + interface node for python (add to `.launch` file)~~
+- [ ] experiments:
+	- [ ] template
+	- [ ] reachability
+	- [ ] interpolation (lin + par)
+	- [ ] planning (moveit)
+	- [ ] integration
 
 #### `rovi_planner`
 
@@ -116,7 +121,7 @@
 - [x] `traj_lin()` (cartesian)
 - [ ] `traj_par()` (cartesian)
 - [ ] `export_x()` methods
-- [ ] joint space interpolation* (trajectory_msgs, template methods e.g. `traj_lin<TrajT>()`?)
+- [ ] ~~joint space interpolation (trajectory_msgs, template methods e.g. `traj_lin<TrajT>()`?)~~
 
 #### `rovi_vision`
 
