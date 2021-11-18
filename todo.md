@@ -106,8 +106,16 @@
 
 - [x] `.launch` file
 - [ ] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
-- [ ] structure for experiments (directory, plotting/matlab, data, template)
-- [ ] `get_experiment_dir()` + `get_data_dir(experiment_dir)`
+- [ ] expriments framework
+	- [x] file structure
+	- [x] documentation
+	- [ ] rovi_system.m
+	- [ ] export_fig
+	- [ ] template w/ examples
+	- [ ] `get_experiment_dir()`
+	- [ ] `get_experiment_data_dir()`
+	- [ ] `make_experiment_data_dir()`
+	- [ ] rovi_system.py (same interface as `rovi_system.h`
 - [ ] ~~interface, e.g. `rovi_system::get_camera_imgs()` + interface node for python (add to `.launch` file)~~
 - [ ] experiments:
 	- [ ] template
