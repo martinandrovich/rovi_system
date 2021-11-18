@@ -82,6 +82,19 @@ An overview of the arguments is located in the [`workcell.launch`](rovi_system/l
 
 Since IntelliSense is utter trash for larger projects, it is recommended to use the [`clangd` extension](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) as the language server, together with [`catkin-tools-clangd`](https://pypi.org/project/catkin-tools-clangd/) python package to generate the `compile_commands.json` for `clangd`. The [`ROS` extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros) is also a nice addition when working in VS Code.
 
+### Working on the project (compile, commit etc.)
+
+From the root of the workspace (i.e. after running `rovi_ws`), run `catkin build` (or `catkin build_compile_cmd` if using `clagngd` extension) to build the workspace. The coding conventions are defined by the `.clangformat` (TODO), summarized as:
+
+- Indent with tabs, align with spaces
+- Comments in lower-case, add links to external resources
+- Consistent interfaces accross the project (e.g. args and return values)
+- Proper includes, cmake and package manifest
+- Commit in blocks of relevant code with short and descriptive messages (typically all lower-case)
+- Segregate code properly in packages; generic utilities go in `ros_utils` pkg
+- ~~Look at `rovi_system/examples/code_conventions.cpp` (TODO) for inspiration~~
+- ~~Add any bugs/issues/todos to GitHub Issues~~
+
 ## License
 
 No license has been decided yet.
