@@ -3,15 +3,17 @@ Robotics and computer vision system for pick and place tasks with ROS/Gazebo/Mov
 
 The project consists of the following packages:
 
-- [`rovi_system`](/rovi_system) - Main project package with examples and tests
-- [`rovi_models`](/rovi_models)
-- [`rovi_planner`](/rovi_planner)
-- [`rovi_vision`](/rovi_vision)
-- [`ur5_ros`](https://github.com/martinandrovich/ur5_ros) - Integration of UR5 robot into ROS/Gazebo/MoveIt environment
-- [`ros_utils`](https://github.com/martinandrovich/ros_utils) - Collection of modern utilities for the ROS/Gazebo/MoveIt workflow
-- [`qp_oases`](https://github.com/dscho15/qp_oases)
+| Package                                                     | Description                                                                    |
+|-------------------------------------------------------------|--------------------------------------------------------------------------------|
+| [`rovi_system`](/rovi_system)                               | Main project package with examples and tests                                   |
+| [`rovi_models`](/rovi_models)                               | Gazebo models and worlds for the the ROVI workcell                             |
+| [`rovi_planner`](/rovi_planner)                             | Interpolation-based trajectory generation                                      |
+| [`rovi_vision`](/rovi_vision)                               | Computer vision-based pose estimation methods for objects in the ROVI workcell |
+| [`ur5_ros`](https://github.com/martinandrovich/ur5_ros)     | Integration of UR5 robot into ROS/Gazebo/MoveIt environment                    |
+| [`ros_utils`](https://github.com/martinandrovich/ros_utils) | Collection of modern utilities for the ROS/Gazebo/MoveIt workflow              |
+| [`qp_oases`](https://github.com/dscho15/qp_oases)           | Port of qpOASES library to ROS                                                 |
 
-For more information, please refer to the README of a specific package.
+For more information, please refer to the `README.md` of a specific package.
 
 ## Getting started
 
@@ -77,6 +79,34 @@ roslaunch rovi_system workcell.launch ee:=wsg50 controller:=ur5_joint_position_c
 ```
 
 An overview of the arguments is located in the [`workcell.launch`](rovi_system/launch/workcell.launch) file.
+
+### Experiments
+
+Experiments in `rovi_system` are contained in the `rovi_system/tests/` directory. An experiment of `<name>` can be implemented in either C++ or Python, and is structured as:
+
+<details>
+<summary><strong>Structure of an experiment in <code>rovi_system</code></strong></summary></br>
+
+```
+rovi_system/tests/                 # directory for all experiments in rovi_system
+|
+└── <name>/                        # experiment directory
+    |
+    ├── data/                      # directory with time-stamped trials
+    |   ├── 20210105_000322/      
+    |   └── ...
+    |
+    ├── test_<name>.cpp            # source code for experiment (ROS node named test_<name>)
+    ├── test_<name>.py             # python code for experiment
+    ├── test_<name>.launch         # launch file for experiment
+    ├── test_<name>.m              # MATLAB code for data manipulation/plotting using export_fig
+    └── README.md                  # documentation of experiment*
+```
+</details>
+
+A C++ experiment is automatically added as an executable ROS node named `test_<name>` (by `rovi_system/CMakeLists.txt`). It can be executed using `rosrun rovi_system test_<name>` or using `roslaunch rovi_system test_<name>.launch` (if provided). If using Python, remember to make `test_<name>.py` executable with `chmod`.
+
+It is important that the naming scheme above is followed; otherwise CMake will fail. Use `rovi_system.h` to access experiment directories, data directories for a particular experiment, and so forth. The `rovi_system/scripts/rovi_system.m` file provides necessary includes for plotting etc. in MATLAB. See the [`template`](/rovi_system/tests/template) experiment for examples.
 
 ### Working in VS Code
 
