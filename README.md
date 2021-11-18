@@ -117,11 +117,14 @@ Since IntelliSense is utter trash for larger projects, it is recommended to use 
 From the root of the workspace (i.e. after running `rovi_ws`), run `catkin build` (or `catkin build_compile_cmd` if using `clagngd` extension) to build the workspace. The coding conventions are defined by the `.clangformat` (TODO), summarized as:
 
 - Indent with tabs, align with spaces
-- Comments in lower-case, add links to external resources
+- Comments in lower-case, add URLs to external resources
 - Consistent interfaces accross the project (e.g. args and return values)
-- Proper includes, cmake and package manifest
+- Always review the code and examples of a package before adding new code
+- Examples of methods/classes etc. is a must (in `/examples`)
 - Commit in blocks of relevant code with short and descriptive messages (typically all lower-case)
+- Proper includes, cmake and package manifest
 - Segregate code properly in packages; generic utilities go in `ros_utils` pkg
+- [ROS Best Practices](https://github.com/leggedrobotics/ros_best_practices/wiki)
 - ~~Look at `rovi_system/examples/code_conventions.cpp` (TODO) for inspiration~~
 - ~~Add any bugs/issues/todos to GitHub Issues~~
 
