@@ -3,6 +3,7 @@
 - [ ] update author/maintainer (email + order)
 - [ ] add `README.md` to each pkg to match description of `package.xml`
 - [ ] update dependencies of each package (`package.xml` + header files)
+- [ ] update `.gitignore`
 
 ## `ros_utils`
 
