@@ -75,3 +75,17 @@ install(
 		include/rovi_system/
 	DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
+
+################################################################################################
+
+# experiments (executables from /tests)
+
+message(STATUS "Addings experiments from 'tests/*/*.cpp'...")
+file(GLOB files "tests/*/*.cpp")
+foreach(file ${files})
+	get_filename_component(name_ext ${file} NAME)
+	get_filename_component(name ${file} NAME_WE)
+	message(STATUS "Found experiment: ${name_ext} as 'test_${name}'...")
+	add_executable(test_${name} ${file})
+	target_link_libraries(test_${name} ${catkin_LIBRARIES} lib_rovi_system)
+endforeach()
