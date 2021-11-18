@@ -11,6 +11,7 @@ find_package(
 	COMPONENTS
 		roscpp
 		roslib
+		ros_utils
 )
 
 # find system libraries
@@ -27,6 +28,7 @@ catkin_package(
 	CATKIN_DEPENDS
 		roscpp
 		roslib
+		ros_utils
 	DEPENDS
 		EIGEN3
 		# Boost
@@ -52,8 +54,8 @@ target_link_libraries(lib_rovi_system ${catkin_LIBRARIES})
 
 # nodes (executables)
 
-add_executable(demo examples/demo.cpp)
-target_link_libraries(demo ${catkin_LIBRARIES} lib_rovi_system)
+# add_executable(demo examples/demo.cpp)
+# target_link_libraries(demo ${catkin_LIBRARIES} lib_rovi_system)
 
 ################################################################################################
 
@@ -62,7 +64,6 @@ target_link_libraries(demo ${catkin_LIBRARIES} lib_rovi_system)
 ## executables and/or libraries for installation
 install(
 	TARGETS
-		demo
 		lib_rovi_system
 	ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 	LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
