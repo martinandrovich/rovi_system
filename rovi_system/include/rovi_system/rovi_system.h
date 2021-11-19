@@ -13,8 +13,8 @@ namespace rovi_system
 	get_experiment_dir(std::string experiment_name = "");
 
 	std::string
-	get_data_dir(const std::string& experiment_name = "");
-
+	make_timestamped_data_dir(const std::string& experiment_name = "", const std::string& dir = "");
+	
 	std::string
-	make_experiment_data_dir(const std::string& experiment_name = "");
+	make_custom_data_dir(const std::string& experiment_name, const std::string& dir);
 }
