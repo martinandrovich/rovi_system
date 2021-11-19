@@ -18,5 +18,10 @@
 	<depend>roslib</depend>
 	
 	<depend>ros_utils</depend>
+	
+	<depend>ur5_controllers</depend>
+	<depend>ur5_description</depend>
+	<depend>ur5_gazebo</depend>
+	<depend>ur5_planner</depend>
 
 </package>

@@ -12,6 +12,10 @@ find_package(
 		roscpp
 		roslib
 		ros_utils
+		ur5_controllers
+		ur5_description
+		ur5_gazebo
+		ur5_planner
 )
 
 # find system libraries
@@ -29,6 +33,10 @@ catkin_package(
 		roscpp
 		roslib
 		ros_utils
+		ur5_controllers
+		ur5_description
+		ur5_gazebo
+		ur5_planner
 	DEPENDS
 		EIGEN3
 		# Boost
