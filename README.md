@@ -92,6 +92,7 @@ rovi_system/tests/                 # directory for all experiments in rovi_syste
 |
 └── <name>/                        # experiment directory
     |
+    ├── img/                       # exported plots
     ├── data/                      # directory with time-stamped trials
     |   ├── 20210105_000322/      
     |   └── ...
@@ -100,13 +101,11 @@ rovi_system/tests/                 # directory for all experiments in rovi_syste
     ├── test_<name>.py             # python code for experiment
     ├── test_<name>.launch         # launch file for experiment
     ├── test_<name>.m              # MATLAB code for data manipulation/plotting using export_fig
-    └── README.md                  # documentation of experiment*
+    └── README.md                  # documentation of experiment
 ```
 </details>
 
-A C++ experiment is automatically added as an executable ROS node named `test_<name>` (by `rovi_system/CMakeLists.txt`). It can be executed using `rosrun rovi_system test_<name>` or using `roslaunch rovi_system test_<name>.launch` (if provided). If using Python, remember to make `test_<name>.py` executable with `chmod`.
-
-It is important that the naming scheme above is followed; otherwise CMake will fail. Use `rovi_system.h` to access experiment directories, data directories for a particular experiment, and so forth. The `rovi_system/scripts/rovi_system.m` file provides necessary includes for plotting etc. in MATLAB. See the [`template`](/rovi_system/tests/template) experiment for examples.
+A C++ experiment is automatically added as a ROS node named `test_<name>` (by `rovi_system/CMakeLists.txt`) and can be launched using `rosrun` or `roslaunch` (if provided). Use `rovi_system.h` and `scripts/rovi_system.m` for helper functions (get experiment/data/img directory, plotting etc.) - see the [`template` experiment](/rovi_system/tests/template) for example code.
 
 ### Working in VS Code
 
