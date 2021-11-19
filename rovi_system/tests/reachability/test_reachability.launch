@@ -1,0 +1,17 @@
+<launch>
+
+	<!-- argument whether to visualize reachability -->
+	<arg name="visualize" default="false"/>
+	
+	<!-- launch gazebo -->
+	<include file="$(find ur5_gazebo)/launch/ur5.launch">
+		<arg name="ee" value="wsg50"/>
+		<arg name="gazebo" value="false"/>
+		<arg name="moveit" value="true"/>
+		<arg name="rviz" value="$(arg visualize)"/>
+	</include>
+
+	<!-- run reachability test -->
+	<node name="test_reachability" pkg="rovi_system" type="test_reachability" output="screen" args="$(arg visualize)"/>
+
+</launch>
