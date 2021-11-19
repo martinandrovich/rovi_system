@@ -19,7 +19,7 @@ std::shared_ptr<KDL::Trajectory_Composite>
 rovi_planner::traj_lin(const std::vector<geometry_msgs::Pose>& waypoints, double vel_max, double acc_max, double equiv_radius)
 {	
 	if (waypoints.size() < 2)
-		throw std::runtime_error("There must be at least two waypoints.");
+		throw std::invalid_argument("There must be at least two waypoints in traj_lin().");
 		
 	// convert to vector<KDL::Frame>
 	std::vector<KDL::Frame> frames;
@@ -54,7 +54,7 @@ rovi_planner::traj_lin(const std::vector<geometry_msgs::Pose>& waypoints, double
 	}
 	catch (const KDL::Error& e)
 	{
-		throw std::runtime_error("Could not plan linear trajectory.");
+		throw std::runtime_error("Could not plan trajectory in traj_lin().");
 	}
 	
 	// return trajectory
