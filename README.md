@@ -28,6 +28,7 @@ The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`][catk
 * [rosdep] - management of ROS system dependecies
 * [vcstool] - automated workspace configuration
 * [catkin_tools] - command line tools for working with catkin workspaces
+* [export_fig] + [Ghostscript] - exporting figures in MATLAB (optional)
 
 ### Installation
 
@@ -143,6 +144,8 @@ No license has been decided yet.
 [rosdep]: https://wiki.ros.org/rosdep
 [vcstool]: https://github.com/dirk-thomas/vcstool
 [catkin_tools]: https://catkin-tools.readthedocs.io
+[export_fig]: https://se.mathworks.com/matlabcentral/fileexchange/23629-export_fig
+[Ghostscript]: https://ghostscript.com/index.html
 
 [pkg-project_foo]: /project_foo
 
