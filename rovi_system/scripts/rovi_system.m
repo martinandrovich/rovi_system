@@ -45,6 +45,7 @@ disp("DIR.TESTS: " + what(DIR.TESTS).path)
 
 % export local functions
 get_experiment_dir = @get_experiment_dir_;
+get_img_dir = @get_img_dir_;
 get_experiment_data_dir = @get_experiment_data_dir_;
 
 % local functions
@@ -52,6 +53,12 @@ get_experiment_data_dir = @get_experiment_data_dir_;
 function dir = get_experiment_dir_(experiment_name)
 	dir_tests = evalin("base","DIR.TESTS");
 	dir = dir_tests + "/" + experiment_name;
+	dir = what(dir).path;
+end
+
+function dir = get_img_dir_(experiment_name)
+	dir_tests = evalin("base","DIR.TESTS");
+	dir = dir_tests + "/" + experiment_name + "/img";
 	dir = what(dir).path;
 end
 
@@ -64,3 +71,4 @@ function dir = get_experiment_data_dir_(experiment_name, timestamp)
 	dir = dir_tests + "/" + experiment_name + "/data/" + timestamp;
 	dir = what(dir).path;
 end
+
