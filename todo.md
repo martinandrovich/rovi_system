@@ -4,11 +4,17 @@
 - [ ] add `README.md` to each pkg to match description of `package.xml`
 - [ ] update dependencies of each package (`package.xml` + header files)
 - [ ] update `.gitignore`
+- [ ] format exceptions (`msg in function()` with `std::runtime_error`, `std::invalid_argument` etc.)
 
 ## `ros_utils`
 
-- [ ] `ros_utils.h`
+- [x] `ros_utils.h`
+	- [x] single header
+	- [x] `math.h`
+	- [x] `std.h`
 - [x] `geometry_msgs.h`
+	- [x] `make_pose()`
+	- [x] `read_pose()`
 - [ ] `gazebo.h`
 	- [ ] simulation
 	- [x] models and states
@@ -106,19 +112,19 @@
 
 - [x] `.launch` file
 - [ ] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
-- [ ] expriments framework
+- [x] expriments framework
 	- [x] file structure
 	- [x] documentation
-	- [ ] rovi_system.m
-	- [ ] export_fig
-	- [ ] template w/ examples
-	- [ ] `get_experiment_dir()`
-	- [ ] `get_experiment_data_dir()`
-	- [ ] `make_experiment_data_dir()`
+	- [x] rovi_system.m
+	- [x] export_fig
+	- [x] template w/ examples
+	- [x] `get_experiment_dir()`
+	- [x] `make_timestamped_data_dir()`
+	- [x] `make_custom_data_dir()`
 	- [ ] rovi_system.py (same interface as `rovi_system.h`
 - [ ] ~~interface, e.g. `rovi_system::get_camera_imgs()` + interface node for python (add to `.launch` file)~~
 - [ ] experiments:
-	- [ ] template
+	- [x] template
 	- [ ] reachability
 	- [ ] interpolation (lin + par)
 	- [ ] planning (moveit)
