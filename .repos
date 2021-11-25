@@ -14,4 +14,4 @@ repositories:
 
   src/qp_oases:
     type: git
-    url: git@github.com:dscho15/qp_oases.git
+    url: https://github.com/dscho15/qp_oases.git
