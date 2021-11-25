@@ -1,7 +1,26 @@
 # ROVI System
-Robotics and computer vision system for pick and place tasks with ROS/Gazebo/MoveIt.
+Robotics and computer vision system for pick-and-place tasks with ROS/Gazebo/MoveIt.
 
-The project consists of the following packages:
+* [Overview](#overview)
+* [Installation](#installation)
+* [Usage](#usage)
+	+ [Running the project](#running-the-project)
+	+ [Experiments](#experiments)
+	+ [Configuration (VS Code)](#configuration)
+	+ [Guidelines](#guidelines)
+* [License](#license)
+* [Acknowledgments](#acknowledgments)
+
+## Overview
+
+The vision-based pick-and-place pipeline is realized within simulated environment using the ROS/Gazebo/MoveIt framework. A workcell consists of a UR5 manipulator mounted onto a table with designated pick and place areas, equipped with various perception sensors.
+
+![rovi-workcell](/rovi_system/assets/img/rovi-workcell.png)
+
+The project is composed of several project-specific and external ROS packages, as well as other dependencies.
+
+<details>
+<summary><strong>Packages</strong></summary></br>
 
 | Package                                                     | Description                                                                    |
 |-------------------------------------------------------------|--------------------------------------------------------------------------------|
@@ -15,13 +34,10 @@ The project consists of the following packages:
 
 For more information, please refer to the `README.md` of a specific package.
 
-## Getting started
+</details>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-### Dependencies
-
-The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`][catkin_tools] with `CMake 3.4` and `gcc 9.3.0-17`, mainly depending on:
+<details>
+<summary><strong>Dependencies</strong></summary></br>
 
 * [ROS (noetic)][ros] - framework for robot operation
 * [Gazebo][gazebo] - robot simulation environment
@@ -30,9 +46,11 @@ The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`][catk
 * [catkin_tools] - command line tools for working with catkin workspaces
 * [export_fig] + [Ghostscript] - exporting figures in MATLAB (optional)
 
-### Installation
+</details>
 
-Installation of the project:
+## Installation
+
+The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`][catkin_tools] with `CMake 3.4` and `gcc 9.3.0-17`. Follow these instructions to install the project:
 
 <details>
 <summary><strong>Installing ROS and dependencies</strong></summary></br>
@@ -55,9 +73,9 @@ sudo apt install python3-catkin-tools
 
 Make sure you have Git SSH configured properly as per [this guide](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
 
-Download the [`setup.bash`](https://github.com/martinandrovich/rovi_system/raw/main/setup.bash) file (← right click and save as) to where the workspace should be created. Open a terminal, navigate to where the file is located, make it executable by running `chmod +x setup.bash` and execute the file in the current shell as `source setup.bash`.
+Download [`setup.bash`](https://github.com/martinandrovich/rovi_system/raw/main/setup.bash) (← right click and save as) to where the workspace should be created.
 
-This will create a catkin workspace and download all necessary packages and dependencies. See [Usage](#usage) for how to use the project.
+Open a terminal, navigate to the file, make it executable with `chmod +x setup.bash`, and execute the file in the current shell as `source setup.bash`. This will create a catkin workspace and download all necessary packages.
 
 </details>
 
@@ -65,9 +83,17 @@ This will create a catkin workspace and download all necessary packages and depe
 
 ### Running the project
 
-Navigate to the catkin workspace (`rovi_ws`) and source the environment variables by running `source devel/setup.bash`. If installed using the `setup.bash` script, you can simply run `rovi_ws` in the terminal to automatically source the workspace and navigate to its directory.
+Navigate to the `rovi_ws` workspace (or run `rovi_ws` in terminal). The `rovi_ws` command will  automatically source the workspace and navigate to its directory.
 
-You can then launch the workcell by running:
+**Build the workspace** using:
+
+```
+catkin build
+```
+
+From the root of the workspace, source the environment variables by running `source devel/setup.bash`. 
+
+**Launch the workcell** by running:
 
 ```
 roslaunch rovi_system workcell.launch
@@ -108,13 +134,18 @@ rovi_system/tests/                 # directory for all experiments in rovi_syste
 
 A C++ experiment is automatically added as a ROS node named `test_<name>` (by `rovi_system/CMakeLists.txt`) and can be launched using `rosrun` or `roslaunch` (if provided). Use `rovi_system.h` and `scripts/rovi_system.m` for helper functions (get experiment/data/img directory, plotting etc.) - see the [`template` experiment](/rovi_system/tests/template) for example code.
 
-### Working in VS Code
+### Configuration (VS Code)
 
-Since IntelliSense is utter trash for larger projects, it is recommended to use the [`clangd` extension](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) as the language server, together with [`catkin-tools-clangd`](https://pypi.org/project/catkin-tools-clangd/) python package to generate the `compile_commands.json` for `clangd`. The [`ROS` extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros) is also a nice addition when working in VS Code.
+Since IntelliSense is utter trash for larger projects, it is recommended to use the [`clangd` extension](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) as the language server, together with [`catkin-tools-clangd`](https://pypi.org/project/catkin-tools-clangd/) python package to generate the `compile_commands.json` for `clangd`.
 
-### Working on the project (compile, commit etc.)
+The [`ROS` extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros) is also a nice addition when working in VS Code. However, the `cpp_properties.json` file it creates for IntellSense is bugged; change the line `/usr/ros/noetic/**` to `/usr/ros/noetic/` to fix include problems.
+
+### Guidelines
 
 From the root of the workspace (i.e. after running `rovi_ws`), run `catkin build` (or `catkin build_compile_cmd` if using `clagngd` extension) to build the workspace. The coding conventions are defined by the `.clangformat` (TODO), summarized as:
+
+<details>
+<summary><strong>Coding conventions</code></strong></summary></br>
 
 - Indent with tabs, align with spaces
 - Comments in lower-case, add URLs to external resources
@@ -127,10 +158,15 @@ From the root of the workspace (i.e. after running `rovi_ws`), run `catkin build
 - [ROS Best Practices](https://github.com/leggedrobotics/ros_best_practices/wiki)
 - ~~Look at `rovi_system/examples/code_conventions.cpp` (TODO) for inspiration~~
 - ~~Add any bugs/issues/todos to GitHub Issues~~
+</details>
 
 ## License
 
 No license has been decided yet.
+
+## Acknowledgments
+
+Thanks to SDU for moral support.
 
 <!-- LINKS -->
 
@@ -146,8 +182,3 @@ No license has been decided yet.
 [catkin_tools]: https://catkin-tools.readthedocs.io
 [export_fig]: https://se.mathworks.com/matlabcentral/fileexchange/23629-export_fig
 [Ghostscript]: https://ghostscript.com/index.html
-
-[pkg-project_foo]: /project_foo
-
-[androvich-git]: https://github.com/martinandrovich
-[robognome-git]: https://github.com/RoboGnome
