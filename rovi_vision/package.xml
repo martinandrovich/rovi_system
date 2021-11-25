@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+
+	<name>rovi_vision</name>
+	<version>1.0.0</version>
+	<description>Computer-vision and AI based pose estimation of objects in ROVI workcell</description>
+
+	<author email="dscho15@student.sdu.dk">Daniel Tofte Schøn</author>
+	<author email="marta16@student.sdu.dk">Martin Androvich</author>
+	<maintainer email="dscho15@student.sdu.dk">Daniel Tofte Schøn</maintainer>
+	<maintainer email="marta16@student.sdu.dk">Martin Androvich</maintainer>
+
+	<license>BSD</license>
+	
+	<buildtool_depend>catkin</buildtool_depend>
+	<depend>roscpp</depend>
+	<depend>roslib</depend>
+	<depend>ros_utils</depend>
+
+</package>
