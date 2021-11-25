@@ -6,14 +6,14 @@ Robotics and computer vision system for pick-and-place tasks with ROS/Gazebo/Mov
 * [Usage](#usage)
 	+ [Running the project](#running-the-project)
 	+ [Experiments](#experiments)
-	+ [Configuration (VS Code)](#configuration)
+	+ [Configuration (VS Code)](#configuration-vs-code)
 	+ [Guidelines](#guidelines)
 * [License](#license)
 * [Acknowledgments](#acknowledgments)
 
 ## Overview
 
-The vision-based pick-and-place pipeline is realized within simulated environment using the ROS/Gazebo/MoveIt framework. A workcell consists of a UR5 manipulator mounted onto a table with designated pick and place areas, equipped with various perception sensors.
+The vision-based pick-and-place pipeline is realized within a simulated environment using the ROS/Gazebo/MoveIt framework. A workcell consists of: a UR5 manipulator mounted onto a table with designated pick and place areas, objects, obstacles, and various perception sensors.
 
 ![rovi-workcell](/rovi_system/assets/img/rovi-workcell.png)
 
@@ -50,7 +50,7 @@ For more information, please refer to the `README.md` of a specific package.
 
 ## Installation
 
-The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`][catkin_tools] with `CMake 3.4` and `gcc 9.3.0-17`. Follow these instructions to install the project:
+The project is tested on Ubuntu `20.04.3 LTS`. Built using [`catkin_tools`][catkin_tools] with `CMake 3.4` and `gcc 9.3.0-17`.
 
 <details>
 <summary><strong>Installing ROS and dependencies</strong></summary></br>
@@ -66,7 +66,6 @@ sudo apt install python3-catkin-tools
 ```
 
 </details>
-
 
 <details>
 <summary><strong>Installing project (workspace)</strong></summary></br>
@@ -138,7 +137,7 @@ A C++ experiment is automatically added as a ROS node named `test_<name>` (by `r
 
 Since IntelliSense is utter trash for larger projects, it is recommended to use the [`clangd` extension](https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd) as the language server, together with [`catkin-tools-clangd`](https://pypi.org/project/catkin-tools-clangd/) python package to generate the `compile_commands.json` for `clangd`.
 
-The [`ROS` extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros) is also a nice addition when working in VS Code. However, the `cpp_properties.json` file it creates for IntellSense is bugged; change the line `/usr/ros/noetic/**` to `/usr/ros/noetic/` to fix include problems.
+The [`ROS` extension](https://marketplace.visualstudio.com/items?itemName=ms-iot.vscode-ros) is also a nice addition when working in VS Code. However, the `cpp_properties.json` file it generates for IntellSense is bugged; change the line `/usr/ros/noetic/**` to `/usr/ros/noetic/` to fix include problems.
 
 ### Guidelines
 
