@@ -5,6 +5,7 @@
 - [ ] update dependencies of each package (`package.xml` + header files)
 - [ ] update `.gitignore`
 - [ ] format exceptions (`msg in function()` with `std::runtime_error`, `std::invalid_argument` etc.)
+- [ ] refactor to `ROS_ASSERT_MSG()`
 
 ## `ros_utils`
 
@@ -49,6 +50,7 @@
 - [x] use kinematic chain (instead of joints)
 - [x] add `default.launch`
 - [x] add `ur5_arm` as parent to `ur5_ee` end-effector group
+- [ ] add TrajOpt
 - [ ] ~~remove floating joint from planning group (maybe not possible)~~
 - [ ] documentation (launch file, floating joint, planning etc.)
 
@@ -69,12 +71,11 @@
 	- [x] `set_planner_config()`
 	- [x] `get_mutexed_planning_scene()`
 	- [x] examples
-	- [ ] add more planners
+	- [ ] add more planners (LazyPRM, SBL)
 - [ ] `reachability.h`
 	- [x] refactor to new ur5:: interface
 	- [x] ReachabilityData
-	- [ ] ~~export_reachability_data()~~
-	- [ ] grasp orientation lambdas (GRASP_SIDE_AT_TCP, GRASP_TOP_AT_TCP)
+	- [x] grasp orientation lambdas (GRASP_SIDE_AT_TCP, GRASP_TOP_AT_TCP)
 	- [x] examples
 
 #### `ur5_dynamics`
@@ -89,7 +90,7 @@
 - [x] `command_setpoint()`
 - [x] `command_traj()`
 - [ ] change to `trajectory_msgs` → `JointTrajectoryPoint` → remove `ur5_msgs`
-- [ ] cartesian controller (bridge)
+- [ ] ~~cartesian controller (bridge)~~ → remove `qp_oases`?
 - [ ] examples
 
 #### `ur5_gazebo`
@@ -112,6 +113,8 @@
 
 - [x] `.launch` file
 - [ ] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
+- [ ] fix `.setup.bash` file
+- [ ] ~~interface, e.g. `rovi_system::get_camera_imgs()` + interface node for python (add to `.launch` file)~~
 - [x] expriments framework
 	- [x] file structure
 	- [x] documentation
@@ -121,14 +124,15 @@
 	- [x] `get_experiment_dir()`
 	- [x] `make_timestamped_data_dir()`
 	- [x] `make_custom_data_dir()`
-	- [ ] rovi_system.py (same interface as `rovi_system.h`
-- [ ] ~~interface, e.g. `rovi_system::get_camera_imgs()` + interface node for python (add to `.launch` file)~~
+	- [ ] rovi_system.py (same interface as `rovi_system.h`)
 - [ ] experiments:
 	- [x] template
-	- [ ] reachability
-	- [ ] interpolation (lin + par)
-	- [ ] planning (moveit)
-	- [ ] integration
+	- [ ] reachability + object pos in heatmap
+	- [ ] point-to-point interpolation (lin + par)
+	- [ ] planning (moveit → LazyPRM vs. SBL)
+	- [ ] pick and place (integration)
+	- [ ] pose estimation dense
+	- [ ] pose estimation sparse
 
 #### `rovi_planner`
 
@@ -140,8 +144,10 @@
 
 #### `rovi_vision`
 
-- [ ] define interface(s) e.g. `rovi_vision::m1::get_pose("object")`
-- [ ] switch to using `Eigen::Isometry3d`
+- [ ] define interface
+- [ ] integrate Daniel's code
+- [ ] use `Eigen::Isometry3d`
+- [ ] use `ros_utils`
 - [ ] examples
 
 #### `rovi_models`
