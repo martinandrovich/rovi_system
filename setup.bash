@@ -9,6 +9,13 @@ PROJ_NAME="ROVI System"
 GIT_URI="git@github.com:martinandrovich/rovi_system.git" # preferably SSH
 DEMO_CMD="roslaunch rovi_system workcell.launch"
 
+# check that script is sourced
+# https://stackoverflow.com/questions/2683279/how-to-detect-if-a-script-is-being-sourced
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]
+then
+	echo "Must be sourced; please run 'source setup.bash'."; exit
+fi
+
 # check dependencies
 if ! hash rosdep vcs &> /dev/null
 then
