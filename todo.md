@@ -18,8 +18,15 @@
 	- [x] `read_pose()`
 - [ ] `gazebo.h`
 	- [ ] simulation
+		- [ ] `set_simulation()`
+		- [ ] `set_projector()`
 	- [x] models and states
-	- [ ] ~~computer vision~~
+	- [ ] computer vision
+		- [ ] `get_point_cloud()`
+		- [ ] `get_camera_img()`
+		- [ ] `get_camera_info()` → `auto [P, K, H, pose]`
+		- [ ] `get_stereo_camera_imgs()` → `imgs["left"]` / `imgs[0]`
+		- [ ] `get_stereo_camera_imgs()` → `P["left"]` / `P[0]`
 - [x] `moveit.h`
 	- [x] `make_mesh_cobj()`
 	- [x] `get_gazebo_cobjs()`
@@ -29,6 +36,9 @@
 	- [x] `Eigen::make_tf(xyz, rpy)`
 	- [x] `Eigen::make_tf(Pose)`
 	- [x] `Eigen::make_tf(xyz, axis, angle)`
+- [ ] `pcl.h`
+	- [ ] `pcl::load_cloud(path)`
+	- [ ] `pcl::show_cloud()` or `pcl::plot_cloud()`
 
 ## `ur5_ros`
 
@@ -113,7 +123,7 @@
 
 - [x] `.launch` file
 - [ ] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
-- [ ] fix `.setup.bash` file
+- [x] fix `.setup.bash` file
 - [ ] ~~interface, e.g. `rovi_system::get_camera_imgs()` + interface node for python (add to `.launch` file)~~
 - [x] expriments framework
 	- [x] file structure
@@ -144,8 +154,11 @@
 
 #### `rovi_vision`
 
-- [ ] define interface
-- [ ] integrate Daniel's code
+- [x] define interface
+- [x] add pkgs
+- [ ] define location for DNNTemplateMatching templates
+- [ ] integrate Daniel's code → refactor to interface
+- [ ] manage dependencies
 - [ ] use `Eigen::Isometry3d`
 - [ ] use `ros_utils`
 - [ ] examples
