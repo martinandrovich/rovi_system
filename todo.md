@@ -2,9 +2,10 @@
 
 - [ ] update author/maintainer (email + order)
 - [ ] add `README.md` to each pkg to match description of `package.xml`
-- [ ] update dependencies of each package (`package.xml` + header files)
+- [ ] update dependencies (`package.xml` + header files) → build tool, libraries, ROS packages + versions
+- [ ] update dependencies/versions in README (PCL 1.7, OpenCV 4 ..)
 - [ ] update `.gitignore`
-- [ ] format exceptions (`msg in function()` with `std::runtime_error`, `std::invalid_argument` etc.)
+- [x] format exceptions (`msg in function()` with `std::runtime_error`, `std::invalid_argument` etc.)
 - [ ] refactor to `ROS_ASSERT_MSG()`
 
 ## `ros_utils`
@@ -19,14 +20,12 @@
 - [ ] `gazebo.h`
 	- [ ] simulation
 		- [ ] `set_simulation()`
-		- [ ] `set_projector()`
 	- [x] models and states
-	- [ ] computer vision
-		- [ ] `get_point_cloud()`
-		- [ ] `get_camera_img()`
-		- [ ] `get_camera_info()` → `auto [P, K, H, pose]`
-		- [ ] `get_stereo_camera_imgs()` → `imgs["left"]` / `imgs[0]`
-		- [ ] `get_stereo_camera_imgs()` → `P["left"]` / `P[0]`
+	- [ ] sensors
+		- [ ] `projector`
+		- [ ] `camera`
+		- [ ] `camera_stereo`
+		- [ ] `kinect`
 - [x] `moveit.h`
 	- [x] `make_mesh_cobj()`
 	- [x] `get_gazebo_cobjs()`
@@ -125,6 +124,9 @@
 - [ ] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
 - [x] fix `.setup.bash` file
 - [ ] ~~interface, e.g. `rovi_system::get_camera_imgs()` + interface node for python (add to `.launch` file)~~
+- [ ] workcell
+	- [ ] add obstacles
+	- [ ] add graspable objects
 - [x] expriments framework
 	- [x] file structure
 	- [x] documentation
@@ -167,3 +169,4 @@
 
 - [x] `rovi_models` pkg
 - [x] models + world (proper export)
+- [ ] change default sensor topics (camera, projector etc.) from `rbrovi/camera` → `camera`
