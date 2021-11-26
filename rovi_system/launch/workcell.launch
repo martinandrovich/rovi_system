@@ -6,10 +6,10 @@
 	<arg name="pose_robot"  doc="Position of robot's base."                    default="-x 0.1 -y 0.5"/>
 	<arg name="pose_camera" doc="Pose of camera."                              default="-x 0.44 -y 1.4 -z 1.5 -R 0.0 -P 1.2 -Y -1.5707"/>
 	<arg name="pose_kinect" doc="Pose of kinect sensor."                       default="-x 0.4 -y 1.96 -z 1.28 -R 0.014188 -P 0.690494 -Y -1.570168"/>
-	<arg name="pose_proj"   doc="Pose of projector."                           default="-x 0.4 -y 1.0 -z 1.5 -R 0.0 -P 1.5707 -Y 0"/>
+	<arg name="pose_proj"   doc="Pose of projector."                           default="-x 0.4 -y 1.0 -z 1.5 -R 0.0 -P 1.5707 -Y 0"/>	
 
-	<arg name="objects"     doc="Whether to spawn objects (bottle, mug etc.)." default="true"/>
-	<arg name="obstacles"   doc="Whether to spawn obstacles."                  default="false"/>
+	<arg name="objects"     doc="Spawn objects (bottle, mug etc.)."            default="true"/>
+	<arg name="obstacles"   doc="Spawn obstacles."                             default="false"/>
 	<arg name="controller"  doc="Controller to use; empty for none."           default="ur5_joint_position_controller"/>
 	<arg name="ee"          doc="End-effector to attach."                      default="wsg50"/>
 	<arg name="moveit"      doc="Launch MoveIt! server."                       default="false"/>
@@ -51,6 +51,7 @@
 	<!-- robot + controller + moveit/rviz-->
 	<include file="$(find ur5_gazebo)/launch/ur5.launch">
 		<arg name="gazebo" value="false"/>
+		<arg name="spawn_urdf" value="true"/>
 		<arg name="pos" value="$(arg pose_robot) -z 0.74"/>
 		<arg name="controller" value="$(arg controller)"/>
 		<arg name="ee" value="$(arg ee)"/>
