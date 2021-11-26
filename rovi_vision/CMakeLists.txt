@@ -14,19 +14,20 @@ find_package(
 		ros_utils
 )
 
-# Finding Eigen is somewhat complicated because of our need to support Ubuntu
-# all the way back to saucy.  First we look for the Eigen3 cmake module
-# provided by the libeigen3-dev on newer Ubuntu.  If that fails, then we
-# fall-back to the version provided by cmake_modules, which is a stand-in.
+# OpenCV
+find_package(OpenCV 4 REQUIRED)
+
+# PCL
+find_package(PCL 1.7 REQUIRED)
+
+# Eigen3 (Finding Eigen is somewhat complicated ..)
+# https://github.com/ros/geometry2/blob/noetic-devel/tf2_eigen/CMakeLists.txt
 find_package(Eigen3 QUIET)
 if(NOT EIGEN3_FOUND)
 	find_package(cmake_modules REQUIRED)
 	find_package(Eigen REQUIRED)
 	set(EIGEN3_INCLUDE_DIRS ${EIGEN_INCLUDE_DIRS})
 endif()
-
-# Note that eigen 3.2 (on Ubuntu Wily) only provides EIGEN3_INCLUDE_DIR,
-# not EIGEN3_INCLUDE_DIRS, so we have to set the latter from the former.
 if(NOT EIGEN3_INCLUDE_DIRS)
 	set(EIGEN3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
 endif()
@@ -35,7 +36,6 @@ endif()
 catkin_package(
 	INCLUDE_DIRS
 		include
-		${EIGEN3_INCLUDE_DIR}
 	LIBRARIES
 		rovi_vision
 	CATKIN_DEPENDS
@@ -43,6 +43,8 @@ catkin_package(
 		roslib
 		ros_utils
 	DEPENDS
+		OpenCV
+		PCL
 		EIGEN3
 )
 
@@ -50,6 +52,8 @@ catkin_package(
 include_directories(
 	include
 	${catkin_INCLUDE_DIRS}
+	${OpenCV_INCLUDE_DIRS}
+	${PCL_INCLUDE_DIRS}
 	${EIGEN3_INCLUDE_DIRS}
 )
 

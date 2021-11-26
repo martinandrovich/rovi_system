@@ -15,11 +15,11 @@ int main(int argc, char** argv)
 	// ...
 
 	// get image from workcell
-	auto img = gazebo::get_camera_img("/optional/gazebo/topic"); // from ros_utils
+	auto img = gazebo::camera().get_img(); // from ros_utils
 
 	// estimate pose using global registration
 	// should the templates be at 'rovi_vision/data/DNNTemplateMatching/milk' or '/rovi_models/models/milk/template'?
-	rovi_vision::DNNTemplateMatching::set_template_for_obj("milk", "path/to/template/dir/for/milk"); // must be set
+	rovi_vision::DNNTemplateMatching::set_template_dir_for_obj("milk", "path/to/template/dir/for/milk"); // must be set
 	auto pose = rovi_vision::DNNTemplateMatching::est_pose("milk", img);
 
 	return 0;
