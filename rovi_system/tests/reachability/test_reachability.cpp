@@ -79,14 +79,14 @@ main(int argc, char **argv)
 		}
 
 		// write results to file
-		auto filename = dir_data + "/" + grasp_orientation + ".csv";
-		std::ofstream fs(filename, std::ofstream::out);
+		auto path = dir_data + "/" + grasp_orientation + ".csv";
+		std::ofstream fs(path, std::ofstream::out);
 
 		fs << "x [m], y [m], plausible states" << std::endl;
 		for (const auto& result : results)
 			fs << result.pos_base[0] << ", " << result.pos_base[1] << ", " << result.plausible_states << "\n";
 		fs.close();
-		ROS_INFO_STREAM("Data was written to '" << filename);
+		ROS_INFO_STREAM("Data was written to '" << path);
 	}
 
 	// cleanup
