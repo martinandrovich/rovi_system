@@ -13,12 +13,23 @@
 
 	<url type="repository">https://github.com/martinandrovich/rovi_system</url>
 
+	<!-- build tool -->
 	<buildtool_depend>catkin</buildtool_depend>
+
+	<!-- libraries -->
+	<depend>OpenCV</depend>
+	<depend>PCL</depend>
+	<depend>Eigen3</depend>
+
+	<!-- ROS packages -->
 	<depend>roscpp</depend>
 	<depend>roslib</depend>
-	
 	<depend>ros_utils</depend>
-	
+
+	<depend>rovi_models</depend>
+	<depend>rovi_planner</depend>
+	<depend>rovi_vision</depend>
+
 	<depend>ur5_controllers</depend>
 	<depend>ur5_description</depend>
 	<depend>ur5_gazebo</depend>

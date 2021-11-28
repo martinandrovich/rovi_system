@@ -12,6 +12,9 @@ find_package(
 		roscpp
 		roslib
 		ros_utils
+		rovi_models
+		rovi_planner
+		rovi_vision
 		ur5_controllers
 		ur5_description
 		ur5_gazebo
@@ -28,11 +31,14 @@ catkin_package(
 		include
 		${EIGEN3_INCLUDE_DIR}
 	LIBRARIES
-		lib_rovi_system
+		rovi_system
 	CATKIN_DEPENDS
 		roscpp
 		roslib
 		ros_utils
+		rovi_models
+		rovi_planner
+		rovi_vision
 		ur5_controllers
 		ur5_description
 		ur5_gazebo
@@ -54,16 +60,16 @@ include_directories(
 # libraries
 # REMEMBER TO ADD TO INSTALL TARGETS (bottom of file) !!!
 
-## lib_rovi_system (project_foo/project_foo.h)
-add_library(lib_rovi_system src/lib_rovi_system.cpp)
-target_link_libraries(lib_rovi_system ${catkin_LIBRARIES})
+## rovi_system (project_foo/project_foo.h)
+add_library(rovi_system src/lib_rovi_system.cpp)
+target_link_libraries(rovi_system ${catkin_LIBRARIES})
 
 ################################################################################################
 
 # nodes (executables)
 
 # add_executable(demo examples/demo.cpp)
-# target_link_libraries(demo ${catkin_LIBRARIES} lib_rovi_system)
+# target_link_libraries(demo ${catkin_LIBRARIES} rovi_system)
 
 ################################################################################################
 
@@ -72,7 +78,7 @@ target_link_libraries(lib_rovi_system ${catkin_LIBRARIES})
 ## executables and/or libraries for installation
 install(
 	TARGETS
-		lib_rovi_system
+		rovi_system
 	ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 	LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 	RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
@@ -95,5 +101,5 @@ foreach(file ${files})
 	get_filename_component(name ${file} NAME_WE)
 	message(STATUS "Found experiment: ${name}...")
 	add_executable(${name} ${file})
-	target_link_libraries(${name} ${catkin_LIBRARIES} lib_rovi_system)
+	target_link_libraries(${name} ${catkin_LIBRARIES} rovi_system)
 endforeach()
