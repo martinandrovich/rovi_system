@@ -22,19 +22,21 @@ int main(int argc, char** argv)
 	};
 
 	// parameters
-	const auto [VEL_MAX, ACC_MAX, PAR_RADIUS, EQUIV_RADIUS] = std::tuple{ 1.0, 1.0, 0.05, 0.05 };
+	auto [VEL_MAX, ACC_MAX, CORNER_RADIUS, EQUIV_RADIUS] = std::tuple{ 0.1, 0.1, 0.05, 0.001 };
 
 	// trajectories
 	auto traj_lin = rovi_planner::traj_lin(waypoints, VEL_MAX, ACC_MAX, EQUIV_RADIUS);
-	// auto traj_par = rovi_planner::traj_par(waypoints, VEL_MAX, ACC_MAX, PAR_RADIUS, EQUIV_RADIUS);
+	auto traj_par = rovi_planner::traj_par(waypoints, VEL_MAX, ACC_MAX, CORNER_RADIUS, EQUIV_RADIUS);
 
-	// discretize trajectory with some dt into a vector of transforms (Eigen::Isometry3d)
+	// print info
+	std::cout << "traj_lin->Duration(): " << traj_lin->Duration() << "\n";
+	std::cout << "traj_par->Duration(): " << traj_par->Duration() << "\n";
+	
+	// discretize linear trajectory with some dt into a vector of transforms (Eigen::Isometry3d)
 	auto dt    = 1.0;
 	auto dur   = traj_lin->Duration();
 	auto vec_T = rovi_planner::traj_to_T(traj_lin, dt);
 
-	// print entries
-	std::cout << "traj_lin->Duration(): " << traj_lin->Duration() << "\n";
 	for (auto [t, T] = std::tuple{ 0., vec_T.begin()}; t < dur; T++, t += dt )
 		std::cout << t << "/" << dur << " [sec]:\n\n" << T->matrix() << "\n\n";
 
