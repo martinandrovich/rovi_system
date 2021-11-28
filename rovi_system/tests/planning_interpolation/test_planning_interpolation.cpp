@@ -24,9 +24,8 @@ main(int argc, char **argv)
 {
 	// usage:
 	// test_planning_interpolation [pick_location]
-
-	// first run:
 	// roslaunch rovi_system workcell.launch objects:=false pose_robot:="-x 0.4 -y 0.55"
+	// rolsaunch rovi_system test_planning_interpolation pick_location:=2
 
 	// ------------------------------------------------------------------------------
 
@@ -42,10 +41,11 @@ main(int argc, char **argv)
 	// ------------------------------------------------------------------------------
 
 	// setup simulation + scene
-	// gazebo::projector().set(false);
 	gazebo::set_simulation(true);
 	wsg50::release();
-	ur5::command_setpoint(ur5::Q_HOME, true);
+	// gazebo::projector().set(false);
+	ros::Duration(5.0).sleep(); // settle
+	ROS_INFO_STREAM("Starting planning interpolation test...");
 
 	// ------------------------------------------------------------------------------
 

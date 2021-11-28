@@ -12,6 +12,6 @@
 	</include>
 
 	<!-- run reachability test -->
-	<node name="test_reachability" pkg="rovi_system" type="test_reachability" output="screen" args="$(arg visualize)"/>
+	<node name="test_reachability" pkg="rovi_system" type="test_reachability" output="screen" args="$(arg visualize)" launch-prefix="gnome-terminal --command"/>
 
 </launch>
