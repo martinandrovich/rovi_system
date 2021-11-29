@@ -68,7 +68,7 @@ main(int argc, char **argv)
 		static auto dir_data = rovi_system::make_timestamped_data_dir("reachability");
 
 		// define grasping transformation
-		auto T_grasp = (grasp_orientation == "top") ? GRASP_TOP_AT_TCP(0.2) : GRASP_SIDE_AT_TCP(0.1);
+		auto T_grasp = (grasp_orientation == "top") ? GRASP_FROM_TOP_AT_TCP(0.2) : GRASP_FROM_SIDE_AT_TCP(0.1);
 
 		// // iterate different base poses
 		std::vector<ur5::moveit::ReachabilityData> results;

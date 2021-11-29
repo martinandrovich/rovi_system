@@ -1,12 +1,13 @@
 #pragma once
 
 #include <string>
+#include <array>
 #include <unordered_map>
-#include <geometry_msgs/Pose.h>
 
+#include <ros_utils/geometry_msgs.h>
 #include <rovi_system/rovi_system.h>
 
-// this files defines all the meta-data for the planning_interpolation test
+// this files defines all the meta-data for the test_planning_interpolation
 // such as the via-points, pick locations etc.
 
 using namespace geometry_msgs;
