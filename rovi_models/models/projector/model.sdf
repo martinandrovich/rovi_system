@@ -29,8 +29,8 @@
         <updateRate>60</updateRate>
         <textureName>stereo_projection_pattern_high_res_red.png</textureName>
         <filterTextureName>stereo_projection_pattern_filter.png</filterTextureName>        
-        <textureTopicName>projector_controller/image</textureTopicName>
-        <projectorTopicName>projector_controller/projector</projectorTopicName>
+        <projectorTopicName>projector</projectorTopicName>
+        <textureTopicName>projector/texture</textureTopicName>
       </plugin>
       
       <static>true</static>
