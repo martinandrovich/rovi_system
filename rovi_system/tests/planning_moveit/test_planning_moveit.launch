@@ -1,0 +1,16 @@
+<launch>
+
+	<!-- object pick location (0, 1 or 2) -->
+	<arg name="pick_location" default="2"/>
+
+	<!-- launch gazebo -->
+	<include file="$(find rovi_system)/launch/workcell.launch">
+		<arg name="ee" value="wsg50"/>
+		<arg name="objects" value="false"/>
+		<arg name="pose_robot" value="-x 0.4 -y 0.55"/>
+	</include>
+
+	<!-- run planning interpolation test -->
+	<node name="test_planning_moveit" pkg="rovi_system" type="test_planning_moveit" output="screen" args="$(arg pick_location)" launch-prefix="gnome-terminal --command"/>
+
+</launch>
