@@ -45,3 +45,6 @@ CATKIN_IGNORE
 
 # log files
 *.log
+
+# MATLAB
+.asv
