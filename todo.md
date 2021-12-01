@@ -14,12 +14,13 @@
 	- [x] single header
 	- [x] `math.h`
 	- [x] `std.h`
+	- [ ] `export_vars.h`
 - [x] `geometry_msgs.h`
 	- [x] `make_pose()`
 	- [x] `read_pose()`
 - [ ] `gazebo.h`
-	- [ ] simulation
-		- [ ] `set_simulation()`
+	- [x] simulation
+		- [x] `set_simulation()`
 	- [x] models and states
 	- [ ] sensors
 		- [ ] `projector`
@@ -35,6 +36,7 @@
 	- [x] `Eigen::make_tf(xyz, rpy)`
 	- [x] `Eigen::make_tf(Pose)`
 	- [x] `Eigen::make_tf(xyz, axis, angle)`
+	- [x] `export_csv()`
 - [ ] `pcl.h`
 	- [ ] `pcl::load_cloud(path)`
 	- [ ] `pcl::show_cloud()` or `pcl::plot_cloud()`
@@ -59,6 +61,7 @@
 - [x] use kinematic chain (instead of joints)
 - [x] add `default.launch`
 - [x] add `ur5_arm` as parent to `ur5_ee` end-effector group
+- [x] add `tcp` link for end-effector (for moveit)
 - [ ] add TrajOpt
 - [ ] ~~remove floating joint from planning group (maybe not possible)~~
 - [ ] documentation (launch file, floating joint, planning etc.)
@@ -80,7 +83,7 @@
 	- [x] `set_planner_config()`
 	- [x] `get_mutexed_planning_scene()`
 	- [x] examples
-	- [ ] add more planners (LazyPRM, SBL)
+	- [x] add more planners (SBL, EST)
 - [ ] `reachability.h`
 	- [x] refactor to new ur5:: interface
 	- [x] ReachabilityData
@@ -98,6 +101,7 @@
 - [x] `command()` (with `Eigen::Vector6d`)
 - [x] `command_setpoint()`
 - [x] `command_traj()`
+- [x] `command_home()`
 - [ ] change to `trajectory_msgs` → `JointTrajectoryPoint` → remove `ur5_msgs`
 - [ ] ~~cartesian controller (bridge)~~ → remove `qp_oases`?
 - [ ] examples
@@ -107,8 +111,9 @@
 - [x] change to `ur5::`
 - [x] `get_robot_state()` → `get_state()`
 - [x] `get_gripper_state()` → `get_ee_state()`
-- [x] `get_ee_given_obj_pose()`
-- [ ] `get_tcp_given_obj_pose()` or `get_ee_given_obj_pose_at_tcp()` (needed?)
+- [x] `get_ee_given_pose()`
+- [x] `get_ee_given_pose_at_tcp()`
+- [x] add `spawn_urdf` arg in `.launch`
 - [ ] add more pre-defined transforms e.g `w_T_b()`
 - [ ] examples
 
@@ -121,12 +126,14 @@
 #### `rovi_system`
 
 - [x] `.launch` file
-- [ ] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
+- [x] meta-data in `rovi_system/rovi_system.h` (e.g. table size)
 - [x] fix `.setup.bash` file
 - [ ] ~~interface, e.g. `rovi_system::get_camera_imgs()` + interface node for python (add to `.launch` file)~~
+- [ ] pick-and-place examples (integrated + hard coded)
 - [ ] workcell
 	- [ ] add obstacles
-	- [ ] add graspable objects
+	- [x] add graspable objects
+	- [x] `spawn_obstacles()`
 - [x] expriments framework
 	- [x] file structure
 	- [x] documentation
@@ -136,11 +143,12 @@
 	- [x] `get_experiment_dir()`
 	- [x] `make_timestamped_data_dir()`
 	- [x] `make_custom_data_dir()`
+	- [x] `make_timestamped_data_dirs()`
 	- [ ] rovi_system.py (same interface as `rovi_system.h`)
 - [ ] experiments:
 	- [x] template
-	- [ ] reachability + object pos in heatmap
-	- [ ] point-to-point interpolation (lin + par)
+	- [x] reachability + object pos in heatmap
+	- [x] point-to-point interpolation (lin + par)
 	- [ ] planning (moveit → LazyPRM vs. SBL)
 	- [ ] pick and place (integration)
 	- [ ] pose estimation dense
@@ -150,8 +158,9 @@
 
 - [x] define interface(s)
 - [x] `traj_lin()` (cartesian)
-- [ ] `traj_par()` (cartesian)
-- [ ] `export_x()` methods
+- [x] `traj_par()` (cartesian)
+- [x] `export_x()` methods
+- [x] `PlanningData`
 - [ ] ~~joint space interpolation (trajectory_msgs, template methods e.g. `traj_lin<TrajT>()`?)~~
 
 #### `rovi_vision`
