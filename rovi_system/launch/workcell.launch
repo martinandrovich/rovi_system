@@ -8,23 +8,25 @@
 	<arg name="pose_kinect" doc="Pose of kinect sensor."                       default="-x 0.4 -y 1.96 -z 1.28 -R 0.014188 -P 0.690494 -Y -1.570168"/>
 	<arg name="pose_proj"   doc="Pose of projector."                           default="-x 0.4 -y 1.0 -z 1.5 -R 0.0 -P 1.5707 -Y 0"/>	
 
+	<arg name="ee"          doc="End-effector to attach."                      default="wsg50"/>
 	<arg name="objects"     doc="Spawn objects (bottle, mug etc.)."            default="true"/>
 	<arg name="obstacles"   doc="Spawn obstacles."                             default="false"/>
+	<arg name="projector"   doc="Spawn the projector."                         default="false"/>
 	<arg name="controller"  doc="Controller to use; empty for none."           default="ur5_joint_position_controller"/>
-	<arg name="ee"          doc="End-effector to attach."                      default="wsg50"/>
 	<arg name="moveit"      doc="Launch MoveIt! server."                       default="false"/>
 	<arg name="rviz"        doc="Launch RVIZ (only if using MoveIt!)."         default="false"/>
 
 	<arg name="world"       doc="The Gazebo world to use."                     default="workcell.world"/>
+	<arg name="paused"      doc="Initial state of Gazebo simulation."          default="false"/>
 	<arg name="gui"         doc="Use GUI during simulation."                   default="true"/>
 	<arg name="headless"    doc="Simulate w/o OpenGL/GLX capabilities."        default="false"/>
 	
 	<!-- GAZEBO -->
 
-	<!-- launch gazebo (must be paused) -->
+	<!-- launch gazebo (can break if not paused) -->
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
 		<arg name="world_name" value="$(arg world)"/>
-		<arg name="paused" value="false"/>
+		<arg name="paused" value="$(arg paused)"/>
 		<arg name="gui" value="$(arg gui)"/>
 		<arg name="headless" value="$(arg headless)"/>
 	</include>
@@ -32,7 +34,7 @@
 	<!-- sensors -->
 	<node name="spawn_stereo_camera" pkg="gazebo_ros" type="spawn_model" args="-database camera_stereo -sdf -model camera_stereo $(arg pose_camera)"/>
 	<node name="spawn_kinect" pkg="gazebo_ros" type="spawn_model" args="-database kinect -sdf -model openni_kinect $(arg pose_kinect)"/>
-	<node name="spawn_projector" pkg="gazebo_ros" type="spawn_model" args="-database projector -sdf -model projector $(arg pose_proj)"/>
+	<node if="$(arg projector)" name="spawn_projector" pkg="gazebo_ros" type="spawn_model" args="-database projector -sdf -model projector $(arg pose_proj)"/>
 	
 	<!-- objects -->
 	<node name="spawn_table" pkg="gazebo_ros" type="spawn_model" args="-database table -sdf -model table -x 0.4 -y 0.6 -z 0.64"/>
