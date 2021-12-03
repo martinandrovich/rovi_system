@@ -20,11 +20,18 @@ set(groot, "DefaultFigureColor", [1 1 1]);
 set(groot, "DefaultAxesFontSize", 14); % !!!
 
 % colors struct
+% https://colorhunt.co/palette/5441796166b332c1cd17d7a0
+% https://colorhunt.co/palette/142f43ffab4cff5f7eb000b9
 COLOR.GRAY = [200 200 200]/255;
 COLOR.LIGHTGRAY = [220 220 220]/255;
-COLOR.ORANGE = [255 143 0]/255;
-COLOR.BLUE = [0 207 255]/255;
-COLOR.MAGENTA = [236 88 234]/255;
+COLOR.NAVY = [84 65 121]/255;
+COLOR.BLUE = [46, 203, 255]/255;
+% COLOR.CYAN = [0 207 255]/255; % OG
+COLOR.TEAL = [89, 255, 244]/255;
+COLOR.GREEN = [23 215 160]/255;
+COLOR.ORANGE = [255, 171, 76]/255;
+COLOR.RED = [255 95 126]/255;
+COLOR.PURPLE = [176 0 185]/255;
 
 % default MATLAB colors
 % http://math.loyola.edu/~loberbro/matlab/html/colorsInMatlab.html
