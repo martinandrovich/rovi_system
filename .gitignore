@@ -47,4 +47,4 @@ CATKIN_IGNORE
 *.log
 
 # MATLAB
-.asv
+*.asv
