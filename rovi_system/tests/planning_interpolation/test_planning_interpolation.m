@@ -3,7 +3,7 @@ run("../../scripts/rovi_system.m");
 
 % deduce directories
 GRASP_POS = "top"; % "top" or "side"
-DIR_DATA = get_experiment_data_dir("planning_interpolation", "20211128_163809")
+DIR_DATA = get_experiment_data_dir("planning_interpolation", "20211128_182721")
 DIR_IMGS = get_img_dir("planning_interpolation")
 
 % load data
@@ -21,7 +21,7 @@ x = data(:, 4); y = data(:, 8); z = data(:, 12);
 figure
 plot3(x, y, z, "LineWidth", 2, "Color", COLOR.BLUE, "DisplayName", "Path")
 hold on
-plot3(traj_pts(:, 4), traj_pts(:, 8), traj_pts(:, 12), "O", "MarkerFaceColor", COLOR.ORANGE, "DisplayName", "Waypoints")
+plot3(traj_pts(:, 4), traj_pts(:, 8), traj_pts(:, 12), "O", "MarkerFaceColor", COLOR.RED, "Color", COLOR.RED, "DisplayName", "Waypoints")
 pbaspect([1 1 1])
 grid on
 xlabel("x"); ylabel("y"); zlabel("z");
@@ -39,7 +39,7 @@ x = data(:, 4); y = data(:, 8); z = data(:, 12);
 figure
 plot3(x, y, z, "LineWidth", 2, "Color", COLOR.BLUE, "DisplayName", "Path")
 hold on
-plot3(traj_pts(:, 4), traj_pts(:, 8), traj_pts(:, 12), "O", "MarkerFaceColor", COLOR.ORANGE, "DisplayName", "Waypoints")
+plot3(traj_pts(:, 4), traj_pts(:, 8), traj_pts(:, 12), "O", "MarkerFaceColor", COLOR.RED, "Color", COLOR.RED, "DisplayName", "Waypoints")
 pbaspect([1 1 1])
 grid on
 xlabel("x"); ylabel("y"); zlabel("z");
@@ -51,26 +51,35 @@ export_fig(DIR_IMGS + "/traj-par.pdf", "-painters")
 
 %% histograms (both)
 
-figure("Position", [0 0 700 500])
+figure("Position", [0 0 800 500])
+t = tiledlayout(1, 2);
 
-subplot(1,2,1)
-histogram(plan_lin(:, 2), 40)
+% linear interpolation
+tile = nexttile;
+data = rmoutliers(plan_lin(:, 2));
+h = histfit(data);
+pd = fitdist(data, "Normal");
+h(1).FaceColor = COLOR.BLUE;
+h(2).Color = COLOR.RED;
+h(2).LineWidth = 3;
 title("Linear interpolation")
-mean(plan_lin(:, 2))
 xlabel("Time [ms]")
 ylabel("Count")
-xlim([0 0.03])
 pbaspect([1 0.7 1])
-% yticklabels(yticks*100)
+annotation("textbox", "String", ["\mu = " + num2str(pd.mu, 3), "\sigma = " + num2str(pd.sigma, 3)], "Position", tile.Position, "Margin", 5, "LineStyle", "None", "HorizontalAlignment", "Right");
 
-subplot(1,2,2)
-histogram(plan_par(:, 2), 20)
+% parabolic interpolation
+tile = nexttile;
+data = rmoutliers(plan_par(:, 2));
+h = histfit(data);
+pd = fitdist(data, "Normal");
+h(1).FaceColor = COLOR.BLUE;
+h(2).Color = COLOR.RED;
+h(2).LineWidth = 3;
 title("Parabolic interpolation")
-mean(plan_lin(:, 2))
 xlabel("Time [ms]")
 ylabel("Count")
-xlim([0 0.03])
 pbaspect([1 0.7 1])
-% yticklabels(yticks*100)
+annotation("textbox", "String", ["\mu = " + num2str(pd.mu, 3), "\sigma = " + num2str(pd.sigma, 3)], "Position", tile.Position, "Margin", 5, "LineStyle", "None", "HorizontalAlignment", "Right");
 
 export_fig(DIR_IMGS + "/plan-time.pdf", "-painters")

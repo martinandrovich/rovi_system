@@ -2,7 +2,7 @@ close all; clear; clc;
 run("../../scripts/rovi_system.m");
 
 % deduce directories
-GRASP_POS = "top"; % "top" or "side"
+GRASP_POS = "side"; % "top" or "side"
 DIR_DATA = get_experiment_data_dir("reachability", "20211119_162442")
 DIR_IMGS = get_img_dir("reachability")
 
@@ -31,6 +31,10 @@ xlabel("Table width (y)")
 ylabel("Table height (x)")
 ytickformat("%.1f");
 xtickformat("%.1f");
+
+hold on
+plot(1, 0.4,'or', "MarkerFaceColor", "Red", "MarkerSize", 10)
+text(1, 0.48, ["Object"], "Color", "White", "FontSize", 10, "HorizontalAlignment", "center")
 
 % export
 export_fig(DIR_IMGS + "/reachability-" + GRASP_POS + ".pdf", "-painters")
