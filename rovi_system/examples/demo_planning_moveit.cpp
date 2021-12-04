@@ -48,8 +48,8 @@ main(int argc, char **argv)
 
 	// define pose of object in base frame with some offset (moveit will plan for b_T_tcp)
 	auto pose_obj = geometry_msgs::make_pose({ pos_x, pos_y, 0.75 });
-	auto w_T_obj = Eigen::make_tf(pose_obj);
-	auto pose_obj_tcp = geometry_msgs::make_pose(ur5::w_T_b().inverse() * w_T_obj * Eigen::make_tf({ 0, 0, 0.1 }));
+	auto tf_grasp =  Eigen::make_tf({ 0, 0, 0.1 }); // grasp transformation (pick offset)
+	auto pose_obj_tcp = ur5::get_tcp_given_pose(pose_obj, tf_grasp);
 
 	// spawn obstacles and object
 	rovi_system::spawn_obstacles();
