@@ -30,12 +30,12 @@ main(int argc, char **argv)
 	// ------------------------------------------------------------------------------
 
 	// init ROS node
-	ros::init(argc, argv, "planning_interpolation");
+	ros::init(argc, argv, "test_planning_interpolation");
 	ros::NodeHandle nh;
 
 	// parameters
 	auto NUM_ITER = 50u;
-	auto [VEL_MAX, ACC_MAX, CORNER_RADIUS, EQUIV_RADIUS] = std::tuple{ 0.1, 0.1, 0.05, 0.001 };
+	double VEL_MAX = 0.1, ACC_MAX = 0.1, CORNER_RADIUS = 0.05, EQUIV_RADIUS = 0.001;
 	auto PICK_INDEX = (argc >= 2) ? atoi(argv[1]) : 2;
 
 	// ------------------------------------------------------------------------------
