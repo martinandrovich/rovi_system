@@ -133,8 +133,6 @@ main(int argc, char **argv)
 		rovi_planner::export_planning_data(results, dir_data_planner + "/plan.csv");
 	}
 
-	ROS_WARN_STREAM("Finished experiments!");
-
 	// ------------------------------------------------------------------------------
 
 	// exit cleanly (or at least try to, lol)

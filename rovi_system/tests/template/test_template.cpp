@@ -19,10 +19,10 @@ main(int argc, char **argv)
 	auto dir_data = rovi_system::make_timestamped_data_dir("template");
 
 	// optionally add a sub-directory (tests/template/data/MYSUBDIR/XXXXXX/)
-	rovi_system::make_timestamped_data_dir("template", "/MYSUBDIR");
+	rovi_system::make_timestamped_data_dir("template", "MYSUBDIR");
 
-	// or create a custom directory for data (tests/template/data/my/custom/path)
-	rovi_system::make_custom_data_dir("template", "/my/custom/path");
+	// or create a custom directory for data (tests/template/data/my/custom/path/)
+	rovi_system::make_custom_data_dir("template", "my/custom/path/");
 	
 	// ------------------------------------------------------------------------------
 
