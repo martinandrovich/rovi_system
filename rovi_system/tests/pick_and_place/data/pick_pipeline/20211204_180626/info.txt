@@ -1,0 +1,9 @@
+object: bottle
+num_iter: 20
+planner: SBL
+tol_pos: [0.001, 0.001, 0.001]
+tol_ori: [0.001, 0.001, 3.14]
+pick_offset:
+  0
+  0
+0.1
