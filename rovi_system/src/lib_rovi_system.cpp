@@ -15,6 +15,9 @@ rovi_system::spawn_obstacles()
 std::string
 rovi_system::get_experiment_dir(std::string experiment_name)
 {
+	// return the experiment dir based on experiment name, e.g., 'rovi_system/tests/experiment_name/'
+	// the experiment directory can be dedcuced from node name ('test_experiment_name' → 'rovi_system/tests/experiment_name/')
+	
 	// deduce experiment name if not provided
 	if (experiment_name == "")
 		experiment_name = ros::this_node::getName().substr(6); // remove '/test_'
@@ -36,10 +39,11 @@ rovi_system::get_experiment_dir(std::string experiment_name)
 std::string
 rovi_system::make_timestamped_data_dir(const std::string& experiment_name, const std::string& dir)
 {
-	if (not dir.empty() and dir[0] != '/')
-		throw std::invalid_argument("The provided directory '" + dir + "' must begin with '/' in make_timestamped_data_dir().");
+	// create a time-stampted data directory 'rovi_system/tests/experiment_name/data/XXXXXX/'
+	// returns the absolute path to the timestamped data directory.
+	// see 'tests/template/test_template.cpp' for example usage
 
-	auto dir_data = get_experiment_dir(experiment_name) + "/data" + dir + "/" + get_timestamp(); // time-stamped data directory
+	auto dir_data = get_experiment_dir(experiment_name) + "/data/" + dir + "/" + get_timestamp(); // time-stamped data directory
 	auto dir_img  = get_experiment_dir(experiment_name) + "/img"; // img dir (for all experiments)
 
 	if (std::filesystem::create_directories(dir_data))
@@ -54,9 +58,10 @@ rovi_system::make_timestamped_data_dir(const std::string& experiment_name, const
 std::string
 rovi_system::make_timestamped_data_dirs(const std::string& experiment_name, const std::initializer_list<std::string>& dirs)
 {
-
-	// if (not dir.empty() and dir[0] != '/')
-	// 	throw std::invalid_argument("The provided directory '" + dir + "' must begin with '/' in make_timestamped_data_dir().");
+	// create a time-stampted data directory 'rovi_system/tests/experiment_name/data/XXXXXX/' with
+	// provided sub-directories <dirs>, e.g., 'experiment_name/data/XXXXXX/<dirs[0]>/', 'experiment_name/data/XXXXXX/<dirs[1]>/' ...
+	// returns the absolute path to the timestamped data directory.
+	// see 'tests/template/test_template.cpp' for example usage
 
 	auto dir_data = get_experiment_dir(experiment_name) + "/data/" + get_timestamp(); // time-stamped data directory
 	auto dir_img  = get_experiment_dir(experiment_name) + "/img"; // img dir (for all experiments)
@@ -76,10 +81,10 @@ rovi_system::make_timestamped_data_dirs(const std::string& experiment_name, cons
 std::string
 rovi_system::make_custom_data_dir(const std::string& experiment_name, const std::string& dir)
 {
-	if (dir.empty() or dir[0] != '/')
-		throw std::invalid_argument("The provided directory '" + dir + "' cannot be empty and must begin with '/' in make_custom_data_dir().");
+	// create a custom directory in the data directory 'rovi_system/tests/experiment_name/data/<dir>/'
+	// returns the absolute path to the created direcotry
 
-	auto dir_data = get_experiment_dir(experiment_name) + "/data" + dir;
+	auto dir_data = get_experiment_dir(experiment_name) + "/data/" + dir;
 	if (std::filesystem::create_directories(dir_data))
 		ROS_INFO_STREAM("Created data directory: " << dir_data);
 

@@ -15,7 +15,7 @@ namespace rovi_system
 		double WIDTH              = 1.20; // [m] (y)
 		double HEIGHT             = 0.75; // [m] (z)
 		double MASS               = 10.0; // [kg]
-		geometry_msgs::Pose POSE  = geometry_msgs::make_pose({ 0.4, 0.6, 0.64 });
+		geometry_msgs::Pose POSE  = geometry_msgs::make_pose({ 0.4, 0.6, 0.64 }); // {x,y,z} [m]
 	} TABLE;
 	
 	// -- setup -------------------------------------------------------------------
