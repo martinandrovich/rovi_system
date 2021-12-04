@@ -8,10 +8,9 @@
 #include <ros_utils/ros_utils.h>
 #include <geometry_msgs/Pose.h>
 #include <ur5_gazebo/ur5_gazebo.h>
-#include <rovi_system/rovi_system.h>
 #include <rovi_planner/rovi_planner.h>
-
-#include "test_planning_interpolation.h"
+#include <rovi_system/rovi_system.h>
+#include <rovi_system/planning_common.h>
 
 int
 main(int argc, char **argv)

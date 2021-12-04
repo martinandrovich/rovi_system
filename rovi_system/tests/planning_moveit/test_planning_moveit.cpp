@@ -18,7 +18,7 @@
 #include <ur5_planner/moveit.h>
 #include <ur5_planner/reachability.h>
 
-#include "test_planning_moveit.h"
+#include <rovi_system/planning_common.h>
 
 int
 main(int argc, char **argv)

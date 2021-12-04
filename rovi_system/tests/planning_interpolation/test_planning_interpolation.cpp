@@ -17,7 +17,8 @@
 #include <rovi_planner/rovi_planner.h>
 #include <rovi_planner/planning_data.h>
 
-#include "test_planning_interpolation.h"
+// planning metadata
+#include <rovi_system/planning_common.h>
 
 int
 main(int argc, char **argv)
@@ -57,7 +58,7 @@ main(int argc, char **argv)
 	auto PICK_OFFSET = Eigen::Isometry3d({ 0.0, 0.0, 0.1 }); // {x, y, z}
 
 	// generate list of waypoints (poses) for EE in base frame
-	// VIA_POINTS etc. defined in 'test_planning_interpolation.h'
+	// VIA_POINTS etc. defined in '<rovi_system/planning_common.h>'
 	std::vector<geometry_msgs::Pose> waypoints =
 	{
 		ur5::get_pose("ee"),                                      // starting pose
