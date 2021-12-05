@@ -24,9 +24,9 @@
 	- [x] models and states
 	- [ ] sensors
 		- [ ] `projector`
-		- [ ] `camera`
+		- [x] `camera`
 		- [ ] `camera_stereo`
-		- [ ] `kinect`
+		- [x] `kinect`
 - [x] `moveit.h`
 	- [x] `make_mesh_cobj()`
 	- [x] `get_gazebo_cobjs()`
@@ -38,7 +38,7 @@
 	- [x] `Eigen::make_tf(xyz, axis, angle)`
 	- [x] `export_csv()`
 - [ ] `pcl.h`
-	- [ ] `pcl::load_cloud(path)`
+	- [x] `pcl::load_cloud(path)`
 	- [ ] `pcl::show_cloud()` or `pcl::plot_cloud()`
 
 ## `ur5_ros`
@@ -133,7 +133,7 @@
 - [ ] workcell
 	- [ ] add obstacles
 	- [x] add graspable objects
-	- [x] `spawn_obstacles()`
+	- [x] `rovi_system::spawn_obstacles()`
 - [x] expriments framework
 	- [x] file structure
 	- [x] documentation
@@ -149,8 +149,9 @@
 	- [x] template
 	- [x] reachability + object pos in heatmap
 	- [x] point-to-point interpolation (lin + par)
-	- [ ] planning (moveit → LazyPRM vs. SBL)
-	- [ ] pick and place (integration)
+	- [x] planning (moveit → EST vs. SBL)
+	- [ ] pick and place (pick only)
+	- [ ] pick and place (full integration)
 	- [ ] pose estimation dense
 	- [ ] pose estimation sparse
 
@@ -178,4 +179,5 @@
 
 - [x] `rovi_models` pkg
 - [x] models + world (proper export)
+- [ ] add `.pcd` files
 - [ ] change default sensor topics (camera, projector etc.) from `rbrovi/camera` → `camera`
