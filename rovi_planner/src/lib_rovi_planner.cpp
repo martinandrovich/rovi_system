@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <memory>
+#include <filesystem>
 #include <Eigen/Eigen>
 
 #include <ros/ros.h>
@@ -141,6 +142,9 @@ rovi_planner::traj_to_T(const TrajPtr& traj, double dt)
 void
 rovi_planner::export_waypoints(const std::vector<geometry_msgs::Pose>& waypoints, const std::string& path)
 {
+	// delete file if it exists
+	std::filesystem::remove(path);
+
 	for (const auto& pt : waypoints)
 	{
 		static Eigen::Affine3d T;
@@ -153,6 +157,9 @@ rovi_planner::export_waypoints(const std::vector<geometry_msgs::Pose>& waypoints
 void
 rovi_planner::export_traj(const TrajPtr& traj, const std::string& path, double dt)
 {
+	// delete file if it exists
+	std::filesystem::remove(path);
+
 	for (double t = 0.0; t < traj->Duration(); t += dt)
 	{
 		// KDL Frame
