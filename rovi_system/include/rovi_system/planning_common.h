@@ -33,4 +33,5 @@ static auto PICK_LOCATIONS = std::array
 static auto PLACE_LOCATION = // in world frame
 	make_pose({ 0.70, 0.10, 0.75 });
 
-static auto PICK_OFFSET = Eigen::make_tf({ 0, 0, 0.1 }); // grasp transformation (offset)
+static auto PICK_OFFSET = Eigen::Isometry3d({ 0, 0, 0.1 }); // grasp transformation (offset)
+static auto PRE_PICK_OFFSET = Eigen::Isometry3d({ 0.0, -0.1, 0.1 }); // {x, y, z}

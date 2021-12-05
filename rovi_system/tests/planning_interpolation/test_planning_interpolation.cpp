@@ -44,7 +44,6 @@ main(int argc, char **argv)
 	// setup simulation + scene
 	gazebo::set_simulation(true);
 	wsg50::release();
-	// gazebo::projector().set(false);
 	ros::Duration(5.0).sleep(); // settle
 	ROS_INFO_STREAM("Starting planning interpolation test...");
 
@@ -52,10 +51,6 @@ main(int argc, char **argv)
 
 	// set object pose (0, 1 or 2, default = 2)
 	auto pose_obj = PICK_LOCATIONS[PICK_INDEX];
-
-	// pick offsets
-	auto PRE_PICK_OFFSET = Eigen::Isometry3d({ 0.0, -0.1, 0.1 }); // {x, y, z}
-	auto PICK_OFFSET = Eigen::Isometry3d({ 0.0, 0.0, 0.1 }); // {x, y, z}
 
 	// generate list of waypoints (poses) for EE in base frame
 	// VIA_POINTS etc. defined in '<rovi_system/planning_common.h>'

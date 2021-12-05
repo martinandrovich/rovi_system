@@ -36,7 +36,6 @@ main(int argc, char **argv)
 	gazebo::set_simulation(true);
 	gazebo::delete_model("bottle1");
 	wsg50::release();
-	// gazebo::projector().set(false);
 	ros::Duration(1.0).sleep(); // settle
 
 	// go home, you're drunk

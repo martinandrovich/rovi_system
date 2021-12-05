@@ -18,7 +18,12 @@ find_package(
 find_package(OpenCV 4 REQUIRED)
 
 # PCL
-find_package(PCL 1.7 REQUIRED)
+find_package(
+	PCL 1.7 REQUIRED
+	COMPONENTS
+		common
+		io
+)
 
 # Eigen3 (Finding Eigen is somewhat complicated ..)
 # https://github.com/ros/geometry2/blob/noetic-devel/tf2_eigen/CMakeLists.txt
@@ -67,7 +72,7 @@ add_library(rovi_vision
 	src/DNNTemplateMatching/DNNTemplateMatching.cpp
 	src/RANSACRegistrationWithICP/RANSACRegistrationWithICP.cpp
 )
-target_link_libraries(rovi_vision ${catkin_LIBRARIES})
+target_link_libraries(rovi_vision ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${PCL_LIBRARIES})
 
 ################################################################################################
 
