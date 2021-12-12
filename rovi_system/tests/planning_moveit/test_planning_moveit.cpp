@@ -72,18 +72,21 @@ main(int argc, char **argv)
 
 	// define pose of object in base frame with some offset; moveit will plan for b_T_tcp
 	auto w_T_obj = Eigen::make_tf(PICK_LOCATIONS[PICK_INDEX]);
-	auto pose_obj_tcp = geometry_msgs::make_pose(ur5::w_T_b().inverse() * w_T_obj * Eigen::make_tf({ 0, 0, 0.1 }));
+	auto pose_obj_tcp = geometry_msgs::make_pose(ur5::w_T_b().inverse() * w_T_obj * Eigen::Isometry3d({ 0, 0, 0.1 }));
 
 	// define tolerances for planning at TCP
 	// this allows end-effector to grasp object at a "free-rotating" z-axis
-	auto tolerances = std::array{ std::vector(3, 0.001), std::vector{0.001, 0.001, 3.14}}; // pos [m], ori [rad]
+	auto tolerances = std::array{
+		std::vector(3, 0.001),          // pos {xyz} [m]
+		std::vector{0.001, 0.001, 3.14} // ori {rpy} [rad]
+	};
 
 	// ------------------------------------------------------------------------------
 
 	// make dirs for data (test_planning_moveit/data/XXXXXX/<planner>)
 	auto dir_data = rovi_system::make_timestamped_data_dirs("planning_moveit", {
-		ur5::moveit::PLANNERS[Planner::SBL],
-		ur5::moveit::PLANNERS[Planner::EST]
+		ur5::moveit::PLANNERS[Planner::EST],
+		ur5::moveit::PLANNERS[Planner::BKPIECE]
 	});
 
 	// export meta-data
@@ -99,7 +102,7 @@ main(int argc, char **argv)
 	// ------------------------------------------------------------------------------
 
 	// do experiments for each planner
-	for (auto planner : { Planner::SBL, Planner::EST })
+	for (auto&& planner : { Planner::EST, Planner::BKPIECE })
 	{
 		using Traj = trajectory_msgs::JointTrajectory;
 		using Plan = rovi_planner::PlanningData<Traj>;
@@ -113,10 +116,11 @@ main(int argc, char **argv)
 		std::vector<Plan> results;
 		for (auto [i, plan, t] = std::tuple{ 0, Plan(), Time()}; i < NUM_ITER and ros::ok(); ++i)
 		{
-			t = Clock::now();
+			// t = Clock::now();
 			auto plan_moveit = ur5::moveit::plan(pose_obj_tcp, planner, "tcp", tolerances);
 
-			plan.planning_time = std::chrono::duration<double, std::milli>(Clock::now() - t).count();
+			// plan.planning_time = std::chrono::duration<double, std::milli>(Clock::now() - t).count();
+			plan.planning_time = plan_moveit.planning_time_;
 			plan.iteration = i;
 
 			if (plan_moveit.error_code_.val == moveit_msgs::MoveItErrorCodes::SUCCESS)
