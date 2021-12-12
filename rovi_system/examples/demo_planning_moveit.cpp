@@ -47,7 +47,7 @@ main(int argc, char **argv)
 
 	// define pose of object in base frame with some offset (moveit will plan for b_T_tcp)
 	auto pose_obj = geometry_msgs::make_pose({ pos_x, pos_y, 0.75 });
-	auto tf_grasp =  Eigen::make_tf({ 0, 0, 0.1 }); // grasp transformation (pick offset)
+	auto tf_grasp =  Eigen::Isometry3d({ 0, 0, 0.1 }); // grasp transformation (pick offset)
 	auto pose_obj_tcp = ur5::get_tcp_given_pose(pose_obj, tf_grasp);
 
 	// spawn obstacles and object
@@ -66,7 +66,7 @@ main(int argc, char **argv)
 	// define tolerances for planning at TCP
 	// this allows end-effector to grasp object at a "free-rotating" z-axis
 	auto tolerances = std::array{
-		std::vector(3, 0.0001),        // pos {xyz} [m]
+		std::vector(3, 0.0001),         // pos {xyz} [m]
 		std::vector{0.001, 0.001, 3.14} // ori {rpy} [rad]
 	};
 
@@ -75,6 +75,8 @@ main(int argc, char **argv)
 
 	// make plan and trajectory
 	auto plan = ur5::moveit::plan(pose_obj_tcp, Planner::SBL, "tcp", tolerances);
+	// auto plan = ur5::moveit::plan(pose_obj_tcp, Planner::EST, "tcp", tolerances);
+	// auto plan = ur5::moveit::plan(pose_obj_tcp, Planner::BKPIECE, "tcp", tolerances);
 	auto traj = ur5::moveit::plan_to_jnt_traj(plan);
 
 	ENTER_TO_CONTINUE("execute trajectory");
