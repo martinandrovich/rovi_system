@@ -23,7 +23,6 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <!-- <uri>model://rovi_gazebo/models/table/table.dae</uri> -->
             <uri>model://table/table.dae</uri>
             <scale>1 1 1</scale>
           </mesh>
@@ -37,7 +36,6 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <mesh>
-            <!-- <uri>model://rovi_gazebo/models/table/table.stl</uri> -->
             <uri>model://table/table.stl</uri>
             <scale>1 1 1</scale>
           </mesh>
@@ -45,13 +43,13 @@
         <surface>
           <friction>
             <ode>
-              <mu>10</mu>
-              <mu2>10</mu2>
-              <fdir1>0 0 0</fdir1>
+              <mu>10.0</mu>
+              <mu2>10.0</mu2>
+              <!-- <fdir1>0 0 0</fdir1>
               <slip1>0.0</slip1>
-              <slip2>0.0</slip2>
+              <slip2>0.0</slip2> -->
             </ode>
-            <torsional>
+            <!-- <torsional>
               <coefficient>1</coefficient>
               <patch_radius>0</patch_radius>
               <surface_radius>0</surface_radius>
@@ -59,9 +57,9 @@
               <ode>
                 <slip>0</slip>
               </ode>
-            </torsional>
+            </torsional> -->
           </friction>
-          <bounce>
+          <!-- <bounce>
             <restitution_coefficient>0</restitution_coefficient>
             <threshold>1e+06</threshold>
           </bounce>
@@ -77,11 +75,11 @@
               <max_vel>0.01</max_vel>
               <min_depth>0</min_depth>
             </ode>
-          </contact>
+          </contact> -->
         </surface>
       </collision>
     </link>
     <static>1</static>
-    <allow_auto_disable>1</allow_auto_disable>
+    <allow_auto_disable>0</allow_auto_disable>
   </model>
 </sdf>
