@@ -35,15 +35,15 @@
 
 		<sensor type="camera" name="camera">
 
-			<update_rate>30.0</update_rate>
+			<update_rate>1000</update_rate>
 
 			<camera name="head">
 
-				<horizontal_fov>1.3962634</horizontal_fov>
+				<horizontal_fov>1.2</horizontal_fov>
 
 				<image>
-					<width>1200</width>
-					<height>1200</height>
+					<width>640</width>
+					<height>480</height>
 					<format>R8G8B8</format>
 				</image>
 
@@ -58,7 +58,7 @@
 					     That pixel"s noise value is added to each of its color
 					     channels, which at that point lie in the range [0,1]. -->
 					<mean>0.0</mean>
-					<stddev>0.007</stddev>
+					<stddev>0.0</stddev>
 				</noise>
 
 			</camera>
@@ -70,7 +70,7 @@
 				<cameraName>camera</cameraName>
 				<imageTopicName>image_raw</imageTopicName>
 				<cameraInfoTopicName>camera_info</cameraInfoTopicName>
-				<frameName>camera_link</frameName>
+				<frameName>camera</frameName>
 
 				<hackBaseline>0.07</hackBaseline>
 				<distortionK1>0.0</distortionK1>
