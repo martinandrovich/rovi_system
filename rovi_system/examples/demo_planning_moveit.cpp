@@ -66,7 +66,7 @@ main(int argc, char **argv)
 	// define tolerances for planning at TCP
 	// this allows end-effector to grasp object at a "free-rotating" z-axis
 	auto tolerances = std::array{
-		std::vector(3, 0.0001),         // pos {xyz} [m]
+		std::vector(3, 0.001),          // pos {xyz} [m]
 		std::vector{0.001, 0.001, 3.14} // ori {rpy} [rad]
 	};
 
@@ -75,6 +75,7 @@ main(int argc, char **argv)
 
 	// make plan and trajectory
 	auto plan = ur5::moveit::plan(pose_obj_tcp, Planner::SBL, "tcp", tolerances);
+	// auto plan = ur5::moveit::plan(pose_obj_tcp, Planner::PRM, "tcp", tolerances);
 	// auto plan = ur5::moveit::plan(pose_obj_tcp, Planner::EST, "tcp", tolerances);
 	// auto plan = ur5::moveit::plan(pose_obj_tcp, Planner::BKPIECE, "tcp", tolerances);
 	auto traj = ur5::moveit::plan_to_jnt_traj(plan);
