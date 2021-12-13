@@ -17,7 +17,7 @@
 	<arg name="rviz"        doc="Launch RVIZ (only if using MoveIt!)."         default="false"/>
 
 	<arg name="world"       doc="The Gazebo world to use."                     default="workcell.world"/>
-	<arg name="paused"      doc="Initial state of Gazebo simulation."          default="false"/>
+	<arg name="paused"      doc="Initial state of Gazebo simulation."          default="true"/>
 	<arg name="gui"         doc="Use GUI during simulation."                   default="true"/>
 	<arg name="headless"    doc="Simulate w/o OpenGL/GLX capabilities."        default="false"/>
 	
