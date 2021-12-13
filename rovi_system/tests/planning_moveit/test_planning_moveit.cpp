@@ -40,6 +40,8 @@ main(int argc, char **argv)
 	auto NUM_ITER = 50u;
 	auto PICK_INDEX = (argc >= 2) ? atoi(argv[1]) : 2; // default index (0, 1, or 2)
 	auto OBJ_NAME = std::string("bottle");
+	auto MAX_PLANNING_TIME = 1.0; // [sec]
+	auto MAX_PLANNING_ATTEMPTS = 10;
 
 	// ------------------------------------------------------------------------------
 
@@ -85,8 +87,8 @@ main(int argc, char **argv)
 
 	// make dirs for data (test_planning_moveit/data/XXXXXX/<planner>)
 	auto dir_data = rovi_system::make_timestamped_data_dirs("planning_moveit", {
-		ur5::moveit::PLANNERS[Planner::EST],
-		ur5::moveit::PLANNERS[Planner::BKPIECE]
+		ur5::moveit::PLANNERS[Planner::SBL],
+		ur5::moveit::PLANNERS[Planner::PRM]
 	});
 
 	// export meta-data
@@ -102,26 +104,23 @@ main(int argc, char **argv)
 	// ------------------------------------------------------------------------------
 
 	// do experiments for each planner
-	for (auto&& planner : { Planner::EST, Planner::BKPIECE })
+	for (auto&& planner : { Planner::SBL, Planner::PRM })
 	{
 		using Traj = trajectory_msgs::JointTrajectory;
 		using Plan = rovi_planner::PlanningData<Traj>;
-		using Clock = std::chrono::high_resolution_clock;
-		using Time = std::chrono::time_point<Clock>;
 
 		// data directory for planner
 		auto dir_data_planner = dir_data + "/" + ur5::moveit::PLANNERS[planner];
 
 		// do iterations per planner
 		std::vector<Plan> results;
-		for (auto [i, plan, t] = std::tuple{ 0, Plan(), Time()}; i < NUM_ITER and ros::ok(); ++i)
+		for (auto [i, plan] = std::tuple{ 0, Plan()}; i < NUM_ITER and ros::ok(); ++i)
 		{
-			// t = Clock::now();
-			auto plan_moveit = ur5::moveit::plan(pose_obj_tcp, planner, "tcp", tolerances);
+			auto plan_moveit = ur5::moveit::plan(pose_obj_tcp, planner, "tcp", tolerances, MAX_PLANNING_TIME, MAX_PLANNING_ATTEMPTS);
 
-			// plan.planning_time = std::chrono::duration<double, std::milli>(Clock::now() - t).count();
-			plan.planning_time = plan_moveit.planning_time_;
 			plan.iteration = i;
+			plan.planning_time = plan_moveit.planning_time_;
+			plan.traj_duration = 0;
 
 			if (plan_moveit.error_code_.val == moveit_msgs::MoveItErrorCodes::SUCCESS)
 			{
