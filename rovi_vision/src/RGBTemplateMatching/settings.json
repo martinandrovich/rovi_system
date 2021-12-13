@@ -1,0 +1,11 @@
+{
+	"object_name": "milk",
+	"x_limits": [0.05, 0.75],
+	"y_limits": [1.00, 1.10],
+	"z_limits": [0.75, 0.75],
+	"yaw_limits": [-180, 180],
+	"camera_topic": "/camera/image_raw",
+	"height": 480,
+	"width": 640,
+	"channels": 3
+}
