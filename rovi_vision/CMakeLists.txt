@@ -12,6 +12,8 @@ find_package(
 		roscpp
 		roslib
 		ros_utils
+		sensor_msgs
+		pcl_conversions
 )
 
 # OpenCV
@@ -19,10 +21,16 @@ find_package(OpenCV 4 REQUIRED)
 
 # PCL
 find_package(
-	PCL 1.7 REQUIRED
+	PCL 1.10 REQUIRED
 	COMPONENTS
 		common
 		io
+		segmentation
+		registration
+		kdtree
+		filters
+		features
+		visualization
 )
 
 # Eigen3 (Finding Eigen is somewhat complicated ..)
@@ -47,6 +55,8 @@ catkin_package(
 		roscpp
 		roslib
 		ros_utils
+		sensor_msgs
+		pcl_conversions
 	DEPENDS
 		OpenCV
 		PCL
@@ -69,7 +79,7 @@ include_directories(
 
 ## rovi_vision
 add_library(rovi_vision
-	src/DNNTemplateMatching/DNNTemplateMatching.cpp
+	src/RGBTemplateMatching/RGBTemplateMatching.cpp
 	src/RANSACRegistrationWithICP/RANSACRegistrationWithICP.cpp
 )
 target_link_libraries(rovi_vision ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${PCL_LIBRARIES})
@@ -78,11 +88,11 @@ target_link_libraries(rovi_vision ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} ${PCL_
 
 # nodes
 
-# add_executable(demo_rovi_vision_DNNTemplateMatching examples/demo_rovi_vision_DNNTemplateMatching.cpp)
-# target_link_libraries(demo_rovi_vision_DNNTemplateMatching ${catkin_LIBRARIES} rovi_vision)
+add_executable(demo_RGBTemplateMatching examples/demo_RGBTemplateMatching.cpp)
+target_link_libraries(demo_RGBTemplateMatching ${catkin_LIBRARIES} rovi_vision)
 
-# add_executable(demo_rovi_vision_RANSACRegistrationWithICP examples/demo_rovi_vision_RANSACRegistrationWithICP.cpp)
-# target_link_libraries(demo_rovi_vision_RANSACRegistrationWithICP ${catkin_LIBRARIES} rovi_vision)
+add_executable(demo_RANSACRegistrationWithICP examples/demo_RANSACRegistrationWithICP.cpp)
+target_link_libraries(demo_RANSACRegistrationWithICP ${catkin_LIBRARIES} rovi_vision)
 
 # ...
 

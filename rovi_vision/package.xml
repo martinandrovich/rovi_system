@@ -25,5 +25,6 @@
 	<depend>roslib</depend>
 	<depend>ros_utils</depend>
 	<depend>sensor_msgs</depend>
+	<depend>pcl_conversions</depend>
 
 </package>
