@@ -40,6 +40,7 @@ const float leaf = 0.01f;
 const int max_ransac = 1000000;
 const int num_of_threads = 8;
 const Eigen::Matrix4d lhs_coord = (Eigen::Matrix4d() <<  0., 0., 1., 0., -1., 0., 0., 0., 0.,-1., 0., 0., 0., 0., 0., 1.).finished();
+const Eigen::Matrix4d rhs_coord = (Eigen::Matrix4d() <<  1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1.).finished();
 const Eigen::Translation3d trans(0.4, 1.96, 1.28);
 const Eigen::Quaterniond quat(0.663876251364229, 0.24394620385982696, 0.23465572697772968, -0.6668547535209687);
 const Eigen::Vector4f min_pt (0.f, 0.85f, 0.775f, 1.0f);
@@ -258,7 +259,7 @@ est_pose(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_scene_, const pcl::Poi
 	}
 
 	Eigen::Isometry3f isof((transformation_icp * best_transform).inverse());
-	return Eigen::Isometry3d(isof.matrix().cast<double>());
+	return Eigen::Isometry3d(isof.matrix().cast<double>() * rhs_coord);
 }
 
 void
