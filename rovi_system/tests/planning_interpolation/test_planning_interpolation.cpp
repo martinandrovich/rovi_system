@@ -24,9 +24,10 @@ int
 main(int argc, char **argv)
 {
 	// usage:
-	// test_planning_interpolation [pick_location]
-	// roslaunch rovi_system workcell.launch objects:=false pose_robot:="-x 0.4 -y 0.55"
 	// rolsaunch rovi_system test_planning_interpolation pick_location:=2
+	
+	// roslaunch rovi_system workcell.launch objects:=false pose_robot:="-x 0.4 -y 0.55"
+	// rosrun rovi_system test_planning_interpolation [pick_location]
 
 	// ------------------------------------------------------------------------------
 
@@ -36,6 +37,7 @@ main(int argc, char **argv)
 
 	// parameters
 	auto NUM_ITER = 50u;
+	auto DT = 0.01; // for traj export
 	double VEL_MAX = 0.1, ACC_MAX = 0.1, CORNER_RADIUS = 0.05, EQUIV_RADIUS = 0.001;
 	auto PICK_INDEX = (argc >= 2) ? atoi(argv[1]) : 2;
 
@@ -69,6 +71,20 @@ main(int argc, char **argv)
 
 	// make dir for data
 	auto dir_data = rovi_system::make_timestamped_data_dir("planning_interpolation");
+	
+	// write metadata
+	{
+	std::ofstream fs(dir_data + "/info.txt", std::ostream::out);
+	fs << "object: " << "bottle" << "\n"
+	   << "pick index: " << PICK_INDEX << "\n"
+	   << "num_iter: " << NUM_ITER << "\n"
+	   << "vel max: " << VEL_MAX << "\n"
+	   << "acc max: " << ACC_MAX << "\n"
+	   << "corner radius: " << CORNER_RADIUS << "\n"
+	   << "equiv radius: " << EQUIV_RADIUS << "\n"
+	   << "dt: " << DT << "\n"
+	   << "pick_offset:\n" << PICK_OFFSET.translation().matrix() << "\n";
+	}
 
 	// export waypoints
 	rovi_planner::export_waypoints(waypoints, dir_data + "/waypoints.csv");
@@ -99,7 +115,7 @@ main(int argc, char **argv)
 
 		// export all planning data for method
 		rovi_planner::export_planning_data(results, dir_data + "/plan_" + method + ".csv");
-		rovi_planner::export_traj(results[0].traj, dir_data + "/traj_" + method + ".csv");
+		rovi_planner::export_traj(results[0].traj, dir_data + "/traj_" + method + ".csv", DT);
 	}
 
 	// ------------------------------------------------------------------------------

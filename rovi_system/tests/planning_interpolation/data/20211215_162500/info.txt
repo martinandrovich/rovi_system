@@ -1,0 +1,12 @@
+object: bottle
+pick index: 2
+num_iter: 50
+vel max: 0.1
+acc max: 0.1
+corner radius: 0.05
+equiv radius: 0.001
+dt: 0.01
+pick_offset:
+  0
+  0
+0.1
