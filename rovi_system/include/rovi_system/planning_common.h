@@ -14,7 +14,7 @@ using namespace geometry_msgs;
 using namespace rovi_system;
 
 // waypoints for TCP (in world frame)
-static auto VIA_POINTS = std::unordered_map<std::string, geometry_msgs::Pose>
+inline auto VIA_POINTS = std::unordered_map<std::string, geometry_msgs::Pose>
 {
 	{ "orient",    make_pose({ 0.65, TABLE.WIDTH/2,       1.20 }) },
 	{ "move-down", make_pose({ 0.65, TABLE.WIDTH/2,       1.00 }) },
@@ -23,15 +23,15 @@ static auto VIA_POINTS = std::unordered_map<std::string, geometry_msgs::Pose>
 };
 
 // locations for object in pick area (in world frame)
-static auto PICK_LOCATIONS = std::array
+inline auto PICK_LOCATIONS = std::array
 {
 	make_pose({ 0.15, 1.05, 0.75 }),
 	make_pose({ 0.40, 1.05, 0.75 }),
 	make_pose({ 0.65, 1.05, 0.75 }),
 };
 
-static auto PLACE_LOCATION = // in world frame
-	make_pose({ 0.70, 0.10, 0.75 });
+inline auto PLACE_LOCATION = // in world frame
+	make_pose({ 0.70, 0.10, 0.76 });
 
-static auto PICK_OFFSET = Eigen::Isometry3d({ 0, 0, 0.1 }); // grasp transformation (offset)
-static auto PRE_PICK_OFFSET = Eigen::Isometry3d({ 0.0, -0.1, 0.1 }); // {x, y, z}
+inline auto PICK_OFFSET = Eigen::Isometry3d({ 0, 0, 0.1 }); // grasp transformation (offset)
+inline auto PRE_PICK_OFFSET = Eigen::Isometry3d({ 0.0, -0.1, 0.1 }); // {x, y, z}

@@ -9,7 +9,7 @@ namespace rovi_system
 {
 	// -- meta-data ---------------------------------------------------------------
 	
-	static const struct
+	inline const struct
 	{
 		double LENGTH             = 0.80; // [m] (x)
 		double WIDTH              = 1.20; // [m] (y)
