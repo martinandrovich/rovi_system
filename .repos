@@ -11,7 +11,3 @@ repositories:
   src/ros_utils:
     type: git
     url: git@github.com:martinandrovich/ros_utils.git
-
-  src/qp_oases:
-    type: git
-    url: https://github.com/dscho15/qp_oases.git
