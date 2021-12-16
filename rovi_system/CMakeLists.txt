@@ -71,8 +71,8 @@ target_link_libraries(rovi_system ${catkin_LIBRARIES})
 add_executable(demo_planning_moveit examples/demo_planning_moveit.cpp)
 target_link_libraries(demo_planning_moveit ${catkin_LIBRARIES} rovi_system)
 
-# add_executable(demo examples/demo.cpp)
-# target_link_libraries(demo ${catkin_LIBRARIES} rovi_system)
+add_executable(demo_pick_and_place examples/demo_pick_and_place.cpp)
+target_link_libraries(demo_pick_and_place ${catkin_LIBRARIES} rovi_system)
 
 ################################################################################################
 
