@@ -39,7 +39,7 @@ namespace rovi_vision::RANSACRegistrationWithICP
 	const Eigen::Matrix4d rhs_coord = (Eigen::Matrix4d() <<  1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1.).finished();
 	const Eigen::Translation3d trans(0.4, 1.96, 1.28);
 	const Eigen::Quaterniond quat(0.663876251364229, 0.24394620385982696, 0.23465572697772968, -0.6668547535209687);
-	const Eigen::Vector4f min_pt (0.f, 0.85f, 0.775f, 1.0f);
+	const Eigen::Vector4f min_pt (0.f, 0.90f, 0.775f, 1.0f);
 	const Eigen::Vector4f max_pt (0.8f, 1.4f, 1.5f, 1.0f);
 
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_scene(new pcl::PointCloud<pcl::PointXYZ>());
@@ -356,7 +356,7 @@ std::tuple<int, Eigen::Matrix4f> RANSAC
 		{
 			max_inliers = inliers;
 			best_transform = transformation;
-			ROS_INFO_STREAM("Found better match with " << inliers << " inliers!");
+			// ROS_INFO_STREAM("Found better match with " << inliers << " inliers!");
 		}
 	}
 
