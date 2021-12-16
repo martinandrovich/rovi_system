@@ -151,8 +151,6 @@ main(int argc, char **argv)
 		}
 		// ------------------------------------------------------------------------------
 
-		// ENTER_TO_CONTINUE("place");
-
 		{ // PLACE
 
 			// desired object pose
