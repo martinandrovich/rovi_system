@@ -1,0 +1,25 @@
+object: milk
+num_iter: 50
+planner: PRM
+tol_pos_pick: [0.001, 0.001, 0.001]
+tol_ori_pick: [0.001, 0.001, 3.14]
+tol_pos_place: [0.001, 0.001, 0.001]
+tol_ori_place: [0.001, 0.001, 3.14]
+max_planning_time: 1
+max_planning_attempts: 10
+pick_index:
+1
+pick_pos:
+x: 0.4
+y: 1.05
+z: 0.75
+
+place_pos:
+x: 0.7
+y: 0.1
+z: 0.76
+
+pick_offset:
+  0
+  0
+0.1
