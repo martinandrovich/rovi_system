@@ -38,8 +38,8 @@ int main(int argc, char** argv)
 	// export trajectories/waypoints to be plotted in MATLAB
 	auto dir_data = rovi_system::make_custom_data_dir("planning_interpolation", "example_waypoints");
 	
-	rovi_planner::export_traj(traj_lin, dir_data + "/traj_lin.csv");
-	rovi_planner::export_traj(traj_par, dir_data + "/traj_par.csv");
+	rovi_planner::export_traj(traj_lin, dir_data + "/traj_lin.csv", 0.01);
+	rovi_planner::export_traj(traj_par, dir_data + "/traj_par.csv", 0.01);
 	rovi_planner::export_waypoints(waypoints, dir_data + "/waypoints.csv");
 	
 	// export durations
