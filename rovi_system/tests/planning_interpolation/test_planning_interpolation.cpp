@@ -76,12 +76,12 @@ main(int argc, char **argv)
 	{
 	std::ofstream fs(dir_data + "/info.txt", std::ostream::out);
 	fs << "object: " << "bottle" << "\n"
-	   << "pick index: " << PICK_INDEX << "\n"
+	   << "pick_index: " << PICK_INDEX << "\n"
 	   << "num_iter: " << NUM_ITER << "\n"
-	   << "vel max: " << VEL_MAX << "\n"
-	   << "acc max: " << ACC_MAX << "\n"
-	   << "corner radius: " << CORNER_RADIUS << "\n"
-	   << "equiv radius: " << EQUIV_RADIUS << "\n"
+	   << "vel_max: " << VEL_MAX << "\n"
+	   << "acc_max: " << ACC_MAX << "\n"
+	   << "corner_radius: " << CORNER_RADIUS << "\n"
+	   << "equiv_radius: " << EQUIV_RADIUS << "\n"
 	   << "dt: " << DT << "\n"
 	   << "pick_offset:\n" << PICK_OFFSET.translation().matrix() << "\n";
 	}
