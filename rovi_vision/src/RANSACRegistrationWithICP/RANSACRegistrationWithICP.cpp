@@ -35,20 +35,19 @@
 
 namespace rovi_vision::RANSACRegistrationWithICP
 {
+	const Eigen::Matrix4d lhs_coord = (Eigen::Matrix4d() <<  0., 0., 1., 0., -1., 0., 0., 0., 0.,-1., 0., 0., 0., 0., 0., 1.).finished();
+	const Eigen::Matrix4d rhs_coord = (Eigen::Matrix4d() <<  1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1.).finished();
+	const Eigen::Translation3d trans(0.4, 1.96, 1.28);
+	const Eigen::Quaterniond quat(0.663876251364229, 0.24394620385982696, 0.23465572697772968, -0.6668547535209687);
+	const Eigen::Vector4f min_pt (0.f, 0.85f, 0.775f, 1.0f);
+	const Eigen::Vector4f max_pt (0.8f, 1.4f, 1.5f, 1.0f);
 
-const float leaf = 0.01f;
-const int max_ransac = 1000000;
-const int num_of_threads = 8;
-const Eigen::Matrix4d lhs_coord = (Eigen::Matrix4d() <<  0., 0., 1., 0., -1., 0., 0., 0., 0.,-1., 0., 0., 0., 0., 0., 1.).finished();
-const Eigen::Matrix4d rhs_coord = (Eigen::Matrix4d() <<  1., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 1.).finished();
-const Eigen::Translation3d trans(0.4, 1.96, 1.28);
-const Eigen::Quaterniond quat(0.663876251364229, 0.24394620385982696, 0.23465572697772968, -0.6668547535209687);
-const Eigen::Vector4f min_pt (0.f, 0.85f, 0.775f, 1.0f);
-const Eigen::Vector4f max_pt (0.8f, 1.4f, 1.5f, 1.0f);
-const bool vis = true;
+	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_scene(new pcl::PointCloud<pcl::PointXYZ>());
+	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object(new pcl::PointCloud<pcl::PointXYZ>());
+}
 
-pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_scene(new pcl::PointCloud<pcl::PointXYZ>());
-pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_object(new pcl::PointCloud<pcl::PointXYZ>());
+namespace rovi_vision::RANSACRegistrationWithICP
+{
 
 std::tuple<int, Eigen::Matrix4f> RANSAC
 (
@@ -63,7 +62,7 @@ est_pose(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_scene_, const pcl::Poi
 {
 	if (cloud_obj_) // called with an object, don't use cached
 		rovi_vision::RANSACRegistrationWithICP::set_obj(cloud_obj_);
-		
+
 	ROS_INFO_STREAM("Estimating pose using RANSACRegistrationWithICP...");
 
 	// cache scene
@@ -203,11 +202,12 @@ est_pose(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_scene_, const pcl::Poi
 	{
 		// wait until handle is finished with its task
 		while (not handle.valid());
+		// handle.wait(); ???
 
 		// get the handle_value
 		// auto handle_val = handle.get();
 		// if(max_inliers < std::get<0>(handle_val))
-		
+
 		// check if number of inliers is larger than the current
 		if (auto [inliers, tf] = handle.get(); max_inliers < inliers)
 		{
@@ -238,7 +238,7 @@ est_pose(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud_scene_, const pcl::Poi
 	ROS_INFO_STREAM("converged - " << icp.hasConverged() << " - score - " << icp.getFitnessScore());
 
 	// visualize only if flag is set
-	if (vis)
+	if (visualize)
 	{
 		pcl::visualization::PCLVisualizer::Ptr viewer(new pcl::visualization::PCLVisualizer());
 		viewer->setBackgroundColor(0, 0, 0);
