@@ -35,13 +35,13 @@ main(int argc, char **argv)
 	ros::NodeHandle nh;
 
 	// parameters
-	auto NUM_ITER = 10;
+	auto NUM_ITER = 50;
 	auto PLANNER = Planner::PRM;
 	auto PICK_INDEX = (argc >= 2) ? atoi(argv[1]) : 2; // default index (0, 1, or 2)
 	auto OBJ_NAME = std::string("milk");
 	auto OBJ_ID = OBJ_NAME + "1";
 	auto OBJ_POSE = PICK_LOCATIONS[PICK_INDEX];
-	auto TOLERANCES_PICK = std::array{std::vector(3, 0.001), std::vector{0.001, 0.001, 0.001}}; // pos [m], ori [rad]
+	auto TOLERANCES_PICK = std::array{std::vector(3, 0.001), std::vector{0.001, 0.001, 3.14}}; // pos [m], ori [rad]
 	auto TOLERANCES_PLACE = std::array{std::vector(3, 0.001), std::vector{0.001, 0.001, 3.14}}; // pos [m], ori [rad]
 	auto MAX_PLANNING_TIME = 1.0; // [sec]
 	auto MAX_PLANNING_ATTEMPTS = 10;
@@ -69,7 +69,7 @@ main(int argc, char **argv)
 
 	// config pose estimation
 	rovi_vision::RANSACRegistrationWithICP::visualize = false;
-	rovi_vision::RANSACRegistrationWithICP::num_of_threads = 8;
+	rovi_vision::RANSACRegistrationWithICP::num_of_threads = 15;
 	rovi_vision::RANSACRegistrationWithICP::max_ransac = 1'000'000; // num iterations
 
 	auto cloud_obj = pcl::load_cloud<pcl::PointXYZ>("package://rovi_models/models/milk/milk.pcd");
@@ -86,8 +86,10 @@ main(int argc, char **argv)
 	fs << "object: " << OBJ_NAME << "\n"
 	   << "num_iter: " << NUM_ITER << "\n"
 	   << "planner: " << ur5::moveit::PLANNERS[PLANNER] << "\n"
-	   << "tol_pos: " << TOLERANCES_PICK[0] << "\n"
-	   << "tol_ori: " << TOLERANCES_PICK[1] << "\n"
+	   << "tol_pos_pick: " << TOLERANCES_PICK[0] << "\n"
+	   << "tol_ori_pick: " << TOLERANCES_PICK[1] << "\n"
+	   << "tol_pos_place: " << TOLERANCES_PLACE[0] << "\n"
+	   << "tol_ori_place: " << TOLERANCES_PLACE[1] << "\n"
 	   << "max_planning_time: " << MAX_PLANNING_TIME << "\n"
 	   << "max_planning_attempts: " << MAX_PLANNING_ATTEMPTS << "\n"
 	   << "pick_index:\n" << PICK_INDEX << "\n"
@@ -98,13 +100,11 @@ main(int argc, char **argv)
 
 	// open file
 	std::ofstream fs(dir_data + "/pick_and_place.csv", std::ofstream::out);
-	fs << "iteration, success, phase" << std::endl;
+	fs << "iteration, success, phase, diff_xy" << std::endl;
 
 	// experiments
 	for (auto [i, phase] = std::tuple{0, std::string()}; i < NUM_ITER; i++)
 	{
-		// ENTER_TO_CONTINUE("next");
-
 		{ // RESET
 			wsg50::release(true); // block while grasping
 			ur5::command_home();
@@ -114,26 +114,23 @@ main(int argc, char **argv)
 
 		// ------------------------------------------------------------------------------
 
-		// ENTER_TO_CONTINUE("pick");
-
 		{ // PICK
 
 			// get point cloud from workcell as PCL and estimate pose
 			auto cloud_scene = gazebo::kinect().get_cloud<pcl::PointCloud<pcl::PointXYZ>>();
 			auto w_T_obj = rovi_vision::RANSACRegistrationWithICP::est_pose(cloud_scene, cloud_obj);
+			// auto obj_pose_est = OBJ_POSE; // ground truth
 			auto obj_pose_est = geometry_msgs::make_pose(w_T_obj);
-			// auto obj_pose_est = OBJ_POSE;
 			auto pose_obj_tcp = ur5::get_tcp_given_pose(obj_pose_est, PICK_OFFSET);
 
-			std::cout << "pos: " << geometry_msgs::read_pose(obj_pose_est).pos << std::endl;
-			std::cout << "rpy: " << geometry_msgs::read_pose(obj_pose_est).rpy << std::endl;
-
 			// planning
-			phase = "pick";
 			auto plan = ur5::moveit::plan(pose_obj_tcp, PLANNER, "tcp", TOLERANCES_PICK, MAX_PLANNING_TIME, MAX_PLANNING_ATTEMPTS);
 
 			if (plan.error_code_.val != moveit_msgs::MoveItErrorCodes::SUCCESS)
-				{ fs  << i << ", " << 0 << ", " << phase << "\n"; continue; }
+			{ // failed plan to pick
+				fs  << i << ", " << false << ", " << "pick_plan" << ", " << 0 << "\n";
+				continue;
+			}
 
 			if (MOVE_MODEL_BEFORE_PICK)
 				gazebo::move_model(OBJ_ID, PLACE_LOCATION);
@@ -151,7 +148,6 @@ main(int argc, char **argv)
 			// attach object to EE
 			ur5::moveit::update_planning_scene_from_gazebo();
 			ur5::moveit::attach_object_to_ee(OBJ_ID, { "tip_l", "tip_r" }); // specify touch_links
-			// ros::Duration(1.0).sleep(); // settle
 		}
 		// ------------------------------------------------------------------------------
 
@@ -164,14 +160,15 @@ main(int argc, char **argv)
 
 			// planning
 			// use different tolerances for place, since orientation doesn't matter
-			phase = "place";
 			auto plan = ur5::moveit::plan(pose_obj_tcp, PLANNER, "tcp", TOLERANCES_PLACE, MAX_PLANNING_TIME, MAX_PLANNING_ATTEMPTS);
 
 			if (plan.error_code_.val != moveit_msgs::MoveItErrorCodes::SUCCESS)
-				{ fs  << i << ", " << 0 << ", " << phase << "\n"; continue; }
+			{ // failed plan to place
+				fs  << i << ", " << false << ", " << "place_plan" << ", " << 0 << "\n";
+				continue;
+			}
 
 			// execute trajectory
-			phase = "place_execute";
 			auto traj = ur5::moveit::plan_to_jnt_traj(plan);
 			ur5::command_traj(traj);
 
@@ -186,7 +183,7 @@ main(int argc, char **argv)
 			auto success = std::abs(diff_xy) < ALLOWED_POSE_ERROR_RADIUS;
 
 			// write to file
-			fs  << i << ", " << success << ", " << phase << ", " << diff_xy << "\n";
+			fs  << i << ", " << success << ", " << "place_execute" << ", " << diff_xy << "\n";
 		}
 	}
 
