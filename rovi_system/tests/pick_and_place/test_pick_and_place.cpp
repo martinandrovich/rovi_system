@@ -92,7 +92,7 @@ main(int argc, char **argv)
 	   << "tol_ori_place: " << TOLERANCES_PLACE[1] << "\n"
 	   << "max_planning_time: " << MAX_PLANNING_TIME << "\n"
 	   << "max_planning_attempts: " << MAX_PLANNING_ATTEMPTS << "\n"
-	   << "pick_index:\n" << PICK_INDEX << "\n"
+	   << "pick_index: " << PICK_INDEX << "\n"
 	   << "pick_pos:\n" << OBJ_POSE.position << "\n"
 	   << "place_pos:\n" << PLACE_LOCATION.position << "\n"
 	   << "pick_offset:\n" << PICK_OFFSET.translation().matrix() << "\n";

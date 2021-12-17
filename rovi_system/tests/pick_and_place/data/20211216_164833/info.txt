@@ -7,8 +7,7 @@ tol_pos_place: [0.001, 0.001, 0.001]
 tol_ori_place: [0.001, 0.001, 3.14]
 max_planning_time: 1
 max_planning_attempts: 10
-pick_index:
-0
+pick_index: 0
 pick_pos:
 x: 0.15
 y: 1.05
