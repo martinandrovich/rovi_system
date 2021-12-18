@@ -2,12 +2,16 @@ close all; clear; clc;
 run("../../scripts/rovi_system.m");
 
 % deduce directories
-GRASP_POS = "side"; % "top" or "side"
+GRASP_POS = "top"; % "top" or "side"
 DIR_DATA = get_experiment_data_dir("reachability", "20211119_162442")
 DIR_IMGS = get_img_dir("reachability")
 
 % load data
 data = readmatrix(DIR_DATA + "/" + GRASP_POS + ".csv");
+
+% most optimal location
+max(data(:, 3))
+% find(data(:,3) == max(data(:, 3)))
 
 increment = 0.1;
 x = [min(data(:, 2)) max(data(:, 2))];
