@@ -33,17 +33,8 @@ COLOR.ORANGE = [255, 171, 76]/255;
 COLOR.RED = [255 95 126]/255;
 COLOR.PURPLE = [176 0 185]/255;
 
-% default MATLAB colors
-% http://math.loyola.edu/~loberbro/matlab/html/colorsInMatlab.html
-% MATLAB_COLORS = {
-% 	[0.0000, 0.4470, 0.7410] ;
-% 	[0.8500, 0.3250, 0.0980] ;
-% 	[0.9290, 0.6940, 0.1250] ;
-% 	[0.4940, 0.1840, 0.5560] ;
-% 	[0.4660, 0.6740, 0.1880] ;
-% 	[0.3010, 0.7450, 0.9330] ;
-% 	[0.6350, 0.0780, 0.1840] ;
-% };
+% color order = use colororder(COLOR.MAP); after figure()
+COLOR.MAP = [COLOR.BLUE; COLOR.RED; COLOR.ORANGE; COLOR.NAVY; COLOR.GREEN; COLOR.PURPLE];
 
 % print resolved directories
 disp("DIR.ROVI_SYSTEM: " + what(DIR.ROVI_SYSTEM).path)
