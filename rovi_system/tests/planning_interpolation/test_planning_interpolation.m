@@ -2,8 +2,7 @@ close all; clear; clc;
 run("../../scripts/rovi_system.m");
 
 % deduce directories
-GRASP_POS = "top"; % "top" or "side"
-DIR_DATA = get_experiment_data_dir("planning_interpolation", "20211128_182721")
+DIR_DATA = get_experiment_data_dir("planning_interpolation", "20211215_162448")
 DIR_IMGS = get_img_dir("planning_interpolation")
 
 % load data
@@ -29,7 +28,7 @@ ax = gca;
 ax.SortMethod = "childorder";
 view(150, 25);
 
-export_fig(DIR_IMGS + "/traj-lin.pdf", "-painters")
+export_fig(DIR_IMGS + "/planning-interpolation-traj-lin.pdf", "-painters")
 
 %% parabolic interpolation
 
@@ -47,7 +46,7 @@ ax = gca;
 ax.SortMethod = "childorder";
 view(150, 25);
 
-export_fig(DIR_IMGS + "/traj-par.pdf", "-painters")
+export_fig(DIR_IMGS + "/planning-interpolation-traj-par.pdf", "-painters")
 
 %% histograms (both)
 
@@ -57,6 +56,7 @@ t = tiledlayout(1, 2);
 % linear interpolation
 tile = nexttile;
 data = rmoutliers(plan_lin(:, 2));
+% data = plan_lin(:, 2);
 h = histfit(data);
 pd = fitdist(data, "Normal");
 h(1).FaceColor = COLOR.BLUE;
@@ -67,6 +67,9 @@ xlabel("Time [ms]")
 ylabel("Count")
 pbaspect([1 0.7 1])
 annotation("textbox", "String", ["\mu = " + num2str(pd.mu, 3), "\sigma = " + num2str(pd.sigma, 3)], "Position", tile.Position, "Margin", 5, "LineStyle", "None", "HorizontalAlignment", "Right");
+
+ax = gca;
+ax.YTickLabel = ax.YTick * 3;
 
 % parabolic interpolation
 tile = nexttile;
@@ -82,4 +85,7 @@ ylabel("Count")
 pbaspect([1 0.7 1])
 annotation("textbox", "String", ["\mu = " + num2str(pd.mu, 3), "\sigma = " + num2str(pd.sigma, 3)], "Position", tile.Position, "Margin", 5, "LineStyle", "None", "HorizontalAlignment", "Right");
 
-export_fig(DIR_IMGS + "/plan-time.pdf", "-painters")
+ax = gca;
+ax.YTickLabel = ax.YTick * 3;
+
+export_fig(DIR_IMGS + "/planning-interpolation-plan-time.pdf", "-painters")
