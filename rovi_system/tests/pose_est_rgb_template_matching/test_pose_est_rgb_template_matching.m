@@ -29,7 +29,7 @@ for i = 1:size(noise, 2)
     subplot(2, 2, i)
     scatter(pos_error(:, 1)*1000, pos_error(:, 2)*1000, ".", "MarkerEdgeColor", COLOR.BLUE, "MarkerEdgeAlpha", 0.2);
     pbaspect([1 1 1]);
-    title('\rm\sigma = ' + string(noise(i)) + " [px]");
+    title('\rm\sigma = ' + string(noise(i)));
     xlim([-50 50]);
     ylim([-50 50]);
     xlabel('x [mm]');
